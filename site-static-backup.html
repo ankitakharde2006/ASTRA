@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Course recap: Inference Basics — what happens between send and response. Topics, exam takeaways, flashcards and a concept diagram, cited to slides.">
+  <meta name="color-scheme" content="light dark">
+  <title>Inference Basics — Day 4 Recap</title>
+  <script>
+    try {
+      var t = localStorage.getItem('recap-theme') ||
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="hero" id="top">
+    <div class="hero-toolbar">
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark theme">
+        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+        </svg>
+        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="hero-inner">
+      <p class="hero-day">Day 4 · ASTRA · online session</p>
+      <h1 class="hero-title">Inference Basics</h1>
+      <p class="hero-purpose">What happens between “send” and “response” — the six-stage request pipeline, the engine beneath it (KV cache, batching, scheduling), the cost-latency trade-offs, and real failures in production.</p>
+      <p class="hero-meta">28 slides · deboistech · 2026-10-04</p>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="Page sections">
+    <ul>
+      <li><a href="#concepts">Concepts</a></li>
+      <li><a href="#topics">Topics</a></li>
+      <li><a href="#takeaways">Takeaways</a></li>
+      <li><a href="#flashcards">Flashcards</a></li>
+      <li><a href="#diagram">Diagram</a></li>
+      <li><a href="#glossary">Glossary</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+
+    <section id="concepts" class="section" aria-labelledby="concepts-heading">
+      <h2 id="concepts-heading">Key concepts</h2>
+      <p class="section-intro">Eight themes covering the whole deck — every teaching slide sits in some range.</p>
+      <div class="card-grid">
+        <a class="concept-card" href="#topic-1"><span class="slide-pill">slides 1-3</span><span class="concept-name">From “send” to “response”</span></a>
+        <a class="concept-card" href="#topic-2"><span class="slide-pill">slides 4-5</span><span class="concept-name">Vocabulary, deepened</span></a>
+        <a class="concept-card" href="#topic-3"><span class="slide-pill">slides 6-10</span><span class="concept-name">The six-stage inference pipeline</span></a>
+        <a class="concept-card" href="#topic-4"><span class="slide-pill">slides 11-14</span><span class="concept-name">KV cache and the latency formulas</span></a>
+        <a class="concept-card" href="#topic-5"><span class="slide-pill">slides 13, 15-16</span><span class="concept-name">Batching strategies and scheduling</span></a>
+        <a class="concept-card" href="#topic-6"><span class="slide-pill">slides 17-19</span><span class="concept-name">Cost-latency trade-offs and routing</span></a>
+        <a class="concept-card" href="#topic-7"><span class="slide-pill">slides 20, 25</span><span class="concept-name">Monitoring and symptom triage</span></a>
+        <a class="concept-card" href="#topic-8"><span class="slide-pill">slides 21-24</span><span class="concept-name">Failures at scale: four cases</span></a>
+      </div>
+    </section>
+
+    <section id="topics" class="section" aria-labelledby="topics-heading">
+      <h2 id="topics-heading">Topics</h2>
+      <div class="topic-list">
+
+        <article class="topic" id="topic-1">
+          <h3>From “send” to “response” <span class="slide-pill">slides 1-3</span></h3>
+          <p>The session opens the black box between “send” and “response”: what Day 1’s words actually measure, which stage of a request each belongs to, and why it matters once real users arrive — because in production you own speed, cost, capacity and reliability, and each idea maps to a decision you will be asked to make.</p>
+          <blockquote class="example"><cite>Example · slide 3</cite>“Calling a model is the easy part. In production you own what happens around it: speed, cost, capacity and reliability.”</blockquote>
+        </article>
+
+        <article class="topic" id="topic-2">
+          <h3>Vocabulary, deepened <span class="slide-pill">slides 4-5</span></h3>
+          <p>A Day 1 refresher (latency is how fast one request starts; throughput is how many we serve at once) plus the four new ideas that decide real-world speed: batching, concurrency, queueing and cold starts.</p>
+          <blockquote class="example"><cite>Example · slide 5</cite>“batching (process requests together), concurrency (many in flight at once), queueing (waiting for a free slot) and cold starts (the delay before a sleeping model can answer).”</blockquote>
+        </article>
+
+        <article class="topic" id="topic-3">
+          <h3>The six-stage inference pipeline <span class="slide-pill">slides 6-10</span></h3>
+          <p>Every request passes the same stages: it arrives as token IDs, may wait in a queue, has its prompt read in one pass (prefill), emits the first token, then generates tokens one at a time (decode). Queue waiting is part of TTFT and under heavy load often dominates it; a longer prompt means a higher TTFT; the gap between two consecutive tokens is TPOT, and it sets how fast text streams.</p>
+          <blockquote class="example"><cite>Example · slide 8</cite>“If every slot is busy, it waits in a queue. That waiting time is part of TTFT, and under heavy load it often dominates it.”</blockquote>
+        </article>
+
+        <article class="topic" id="topic-4">
+          <h3>KV cache and the latency formulas <span class="slide-pill">slides 11-14</span></h3>
+          <p>Attention needs the keys (K) and values (V) of every earlier token; the KV cache computes each token’s K and V once, stores and reuses them — but it bills memory for every token, in every layer, for every request in the batch (about 0.8 MB per token for a 13B model), competing with the weights and setting how many requests fit at once. Slide 14 ties it together: TTFT = queueing + prefill, TPOT = decode time per token, total latency roughly TTFT + (output tokens - 1) x TPOT.</p>
+          <blockquote class="example"><cite>Example · slide 14</cite>“TTFT = queueing + prefill. TPOT = decode time per token. Total latency is everything combined, roughly TTFT + (output tokens - 1) x TPOT.”</blockquote>
+        </article>
+
+        <article class="topic" id="topic-5">
+          <h3>Batching strategies and scheduling <span class="slide-pill">slides 13, 15-16</span></h3>
+          <p>To keep an expensive GPU busy, providers batch many requests together: throughput rises, but your own request may have to wait for the batch. Static batching waits for the slowest request, so finished slots sit idle; continuous (iteration-level) batching refills a freed slot at the very next step, so the GPU stays full and newcomers wait less. Each step the scheduler decides who joins the batch — long prompts get sliced so they cannot stall everyone’s decoding, and when KV memory runs out requests are paused or turned away; these choices shape your p99.</p>
+          <blockquote class="example"><cite>Example · slide 15</cite>“Static batching waits for the slowest request before starting anything new, so finished slots sit idle. Continuous (iteration-level) batching refills a freed slot at the very next step.”</blockquote>
+        </article>
+
+        <article class="topic" id="topic-6">
+          <h3>Cost-latency trade-offs and routing <span class="slide-pill">slides 17-19</span></h3>
+          <p>Bigger is not always better: larger models are usually stronger but slower and pricier per token, while smaller models are cheaper and snappier but weaker on complex tasks — latency, cost and quality move together. Picking a model is a trade-off, not a ranking, and instead of one model for everything a router can pick the model per request: easy ones to a small, fast model, hard ones to a large, careful one.</p>
+          <blockquote class="example"><cite>Example · slide 18</cite>“Ask: how long can this task wait, and how wrong can it afford to be? There is no universal answer.”</blockquote>
+        </article>
+
+        <article class="topic" id="topic-7">
+          <h3>Monitoring and symptom triage <span class="slide-pill">slides 20, 25</span></h3>
+          <p>Average latency hides most of these problems, so teams watch a small dashboard: percentiles for TTFT and TPOT, token counts, queue and cache health, and output quality. In production nobody tells you “the KV cache is full” — you get symptoms, and knowing the concepts turns a vague complaint into a short list of suspects, each living in one stage of the pipeline.</p>
+          <blockquote class="example"><cite>Example · slide 20</cite>“Average latency hides most of these problems. Teams watch a small dashboard: percentiles for TTFT and TPOT, token counts, queue and cache health, and output quality.”</blockquote>
+        </article>
+
+        <article class="topic" id="topic-8">
+          <h3>Failures at scale: four cases <span class="slide-pill">slides 21-24</span></h3>
+          <p>Four documented failures: in GPT-2/3’s tokenizer, usernames from Reddit’s r/counting forum such as ‘SolidGoldMagikarp’ became single tokens yet barely appeared in the training data, so the models denied, hallucinated or produced gibberish about them (slide 21); GPT-4o launched in May 2024 with a new 200k-token tokenizer whose longest Chinese tokens were spam, gambling and adult-site phrases, learned from a corpus polluted by hijacked web pages (slide 22); Anthropic’s routing bug, which sent short-context requests to servers set up for the 1M-token context window — at the worst hour 16% of Sonnet 4 requests were affected, and sticky routing kept some users on the wrong servers (slide 23); and 60-80% of KV-cache memory wasted by 2023 serving systems on fragmentation and over-reservation, which PagedAttention cut below 4% and turned into a 2-4x throughput gain (slide 24). Slide 28’s caveat travels with all of them: the figures are as reported by their authors and are not independently verified.</p>
+          <blockquote class="example"><cite>Example · slide 24</cite>“Berkeley’s vLLM team found that 2023 serving systems wasted 60-80% of KV-cache memory on fragmentation and over-reservation, which capped batch sizes. Paging the cache (PagedAttention) cut waste below 4% and raised throughput 2-4x.”</blockquote>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="takeaways" class="section" aria-labelledby="takeaways-heading">
+      <h2 id="takeaways-heading">Exam takeaways</h2>
+      <ol class="takeaway-list">
+        <li><strong>The latency formulas:</strong> TTFT = queueing + prefill; TPOT = decode time per token; total latency is roughly TTFT + (output tokens - 1) x TPOT. <span class="slide-pill">slide 14</span></li>
+        <li><strong>What the KV cache costs:</strong> about 0.8 MB per token for a 13B model — K and V for every token, in every layer, for every request in the batch — competing with the weights for GPU memory and setting how many requests fit at once. <span class="slide-pill">slide 12</span></li>
+        <li><strong>Model choice is a trade-off, not a ranking:</strong> ask how long the task can wait and how wrong it can afford to be — latency, cost and quality move together. <span class="slide-pill">slides 17-18</span></li>
+      </ol>
+    </section>
+
+    <section id="flashcards" class="section" aria-labelledby="flashcards-heading">
+      <h2 id="flashcards-heading">Flashcards</h2>
+      <p class="section-intro">Click or press Enter on a card to flip it.</p>
+      <div class="flash-grid">
+        <button class="flip-card" type="button" aria-pressed="false">
+          <span class="flip-inner">
+            <span class="flip-face flip-front">What is TTFT equal to?</span>
+            <span class="flip-face flip-back">Queueing + prefill. <span class="slide-pill">slide 14</span></span>
+          </span>
+        </button>
+        <button class="flip-card" type="button" aria-pressed="false">
+          <span class="flip-inner">
+            <span class="flip-face flip-front">What does TPOT measure?</span>
+            <span class="flip-face flip-back">The gap between two consecutive tokens — the decode time per token, which sets how fast text streams. <span class="slide-pill">slides 10, 14</span></span>
+          </span>
+        </button>
+        <button class="flip-card" type="button" aria-pressed="false">
+          <span class="flip-inner">
+            <span class="flip-face flip-front">How much KV-cache memory does one token need for a 13B model?</span>
+            <span class="flip-face flip-back">About 0.8 MB per token — K and V for every token, in every layer, for every request in the batch. <span class="slide-pill">slide 12</span></span>
+          </span>
+        </button>
+        <button class="flip-card" type="button" aria-pressed="false">
+          <span class="flip-inner">
+            <span class="flip-face flip-front">How does continuous (iteration-level) batching differ from static batching?</span>
+            <span class="flip-face flip-back">Static batching waits for the slowest request, leaving finished slots idle; continuous batching refills a freed slot at the very next step, so the GPU stays full and newcomers wait less. <span class="slide-pill">slide 15</span></span>
+          </span>
+        </button>
+        <button class="flip-card" type="button" aria-pressed="false">
+          <span class="flip-inner">
+            <span class="flip-face flip-front">Which two questions should decide which model you pick?</span>
+            <span class="flip-face flip-back">How long can this task wait, and how wrong can it afford to be? There is no universal answer. <span class="slide-pill">slide 18</span></span>
+          </span>
+        </button>
+      </div>
+    </section>
+
+    <section id="diagram" class="section" aria-labelledby="diagram-heading">
+      <h2 id="diagram-heading">The request’s journey</h2>
+      <p class="section-intro">Twelve nodes, every arrow traced to a stated slide relationship: TTFT = queueing + prefill, TPOT = decode (slide 14).</p>
+      <div class="diagram-controls">
+        <button id="download-svg" class="btn" type="button" disabled>Download SVG</button>
+        <p id="diagram-note" class="diagram-note" hidden>The diagram preview needs an internet connection (Mermaid loads from cdnjs). The source below renders in any Mermaid viewer.</p>
+      </div>
+      <div id="diagram-render" class="diagram-render" role="img" aria-label="Flowchart: a request arrives, waits in a queue, is prefilled, emits the first token, decodes one token at a time while batched on the GPU, and streams back; TTFT comes from queueing plus prefill, TPOT from decode, and both feed total latency; the KV cache feeds decode and the batch size, and the scheduler decides who joins the batch."></div>
+      <details class="diagram-source">
+        <summary>View diagram source</summary>
+        <pre id="diagram-pre">flowchart TD
+  A[Request arrives] --&gt; B[Queue wait]
+  B --&gt; C[Prefill]
+  C --&gt; F[First token]
+  F --&gt; D[Decode one by one]
+  D --&gt; G[Batch on GPU]
+  G --&gt; H[Stream back]
+  B --&gt; T[TTFT]
+  C --&gt; T
+  D --&gt; P[TPOT]
+  T --&gt; L[Total latency]
+  P --&gt; L
+  K[KV cache] --&gt; D
+  K --&gt; G
+  S[Scheduler] --&gt; G
+  K --&gt; S</pre>
+      </details>
+    </section>
+
+    <section id="glossary" class="section" aria-labelledby="glossary-heading">
+      <h2 id="glossary-heading">Glossary</h2>
+      <dl class="glossary">
+        <dt>Latency <span class="slide-pill">slide 4</span></dt>
+        <dd>How fast one request starts.</dd>
+        <dt>Throughput <span class="slide-pill">slide 4</span></dt>
+        <dd>How many requests we serve at once.</dd>
+        <dt>Batching <span class="slide-pill">slide 5</span></dt>
+        <dd>Processing requests together.</dd>
+        <dt>Concurrency <span class="slide-pill">slide 5</span></dt>
+        <dd>Many requests in flight at once.</dd>
+        <dt>Queueing <span class="slide-pill">slide 5</span></dt>
+        <dd>Waiting for a free slot.</dd>
+        <dt>Cold start <span class="slide-pill">slide 5</span></dt>
+        <dd>The delay before a sleeping model can answer.</dd>
+        <dt>Tokenizer <span class="slide-pill">slide 7</span></dt>
+        <dd>Cuts text into tokens; from stage 1 on, everything the model sees is a sequence of token IDs.</dd>
+        <dt>Prefill <span class="slide-pill">slide 9</span></dt>
+        <dd>The model reads the entire prompt in one pass, builds its internal state, then emits the first token; a longer prompt means a higher TTFT.</dd>
+        <dt>Decode <span class="slide-pill">slide 10</span></dt>
+        <dd>Each new token depends on the tokens before it, so the model produces them one at a time.</dd>
+        <dt>TTFT <span class="slide-pill">slides 8, 14</span></dt>
+        <dd>Measured as queueing + prefill; the queueing share often dominates under heavy load.</dd>
+        <dt>TPOT <span class="slide-pill">slides 10, 14</span></dt>
+        <dd>The gap between two consecutive tokens; the decode time per token.</dd>
+        <dt>KV cache <span class="slide-pill">slide 11</span></dt>
+        <dd>Each token’s keys and values are computed once, stored and reused instead of recomputed at every step.</dd>
+        <dt>Static batching <span class="slide-pill">slide 15</span></dt>
+        <dd>Waits for the slowest request before starting anything new, so finished slots sit idle.</dd>
+        <dt>Continuous (iteration-level) batching <span class="slide-pill">slide 15</span></dt>
+        <dd>Refills a freed slot at the very next step, keeping the GPU full.</dd>
+        <dt>Scheduler <span class="slide-pill">slide 16</span></dt>
+        <dd>Decides each step who joins the batch; slices long prompts, and pauses or turns requests away when KV memory runs out.</dd>
+        <dt>Router <span class="slide-pill">slide 19</span></dt>
+        <dd>Picks the model per request: easy ones to a small, fast model, hard ones to a large, careful one.</dd>
+      </dl>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p><strong>Inference Basics</strong> — Day 4 · ASTRA · deboistech · 2026-10-04 · 28 slides.</p>
+    <p>Case-study figures are as reported by their authors and are not independently verified (slide 28). The deck’s recap also names <em>sharding</em>, which no slide in this deck teaches — flagged as a gap.</p>
+    <p>Built from <code>output/recap.md</code> + <code>output/diagram.mmd</code> in a single pass. <a href="#top">Back to top</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js" defer></script>
+  <script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,2056 @@
+=== Page 1 ===
+➢ Unit I: Introduction to Computer Networks and Physical Layer 
+ 
+• Introduction to Computer Networks 
+ 
+What is a Computer Network? 
+A Computer Network is a collection of two or more computers or devices connected together so they can 
+communicate, exchange data, and share resources (such as printers, files, software, and Internet 
+connection). 
+A network may be connected using: 
+• Wired cables (Ethernet, Optical Fiber)  
+• Wireless technology (Wi-Fi, Bluetooth,  
+Cellular Network)  
+ 
+Simple Definition (Exam View) 
+A computer network is a group of  
+interconnected computers and devices  
+that communicate with each other to  
+share data, hardware, software, and  
+Internet resources. 
+ 
+Real-Life Example 
+Imagine a college computer laboratory. 
+There are: 
+• 50 computers  
+• 1 printer  
+• 1 Internet connection  
+• 1 server  
+Instead of buying 50 printers and 50 Internet connections, all computers are connected through a network. 
+Students can: 
+• Print from any computer  
+• Access the Internet  
+• Share files  
+• Submit assignments  
+This is a computer network. 
+ 
+Another Example 
+WhatsApp 
+When you send a message: 
+1. Your phone sends data.  
+2. Data travels through the Internet.  
+3. WhatsApp server receives it.  
+4. Receiver gets the message.  
+Without computer networks, WhatsApp would not work. 
+
+
+=== Page 2 ===
+• Components of Computer Network 
+ 
+A computer network consists of: 
+1. Computer (Node) 
+Devices that send or receive data. 
+Examples: 
+• Laptop  
+• Desktop  
+• Smartphone  
+ 
+2. Server 
+A powerful computer that provides services to other computers. 
+Example: 
+• College Result Server  
+• Google Server  
+ 
+3. Client 
+A computer that requests services from a server. 
+Example: 
+Your laptop opening Gmail. 
+ 
+4. Transmission Media 
+Medium through which data travels. 
+Examples: 
+• Ethernet Cable  
+• Optical Fiber  
+• Wi-Fi  
+ 
+5. Network Devices 
+Examples: 
+• Router  
+• Switch  
+• Hub  
+• Modem  
+• Access Point  
+ 
+6. Network Software 
+Software used for communication. 
+Examples: 
+• Windows Networking  
+• TCP/IP Protocol  
+ 
+Characteristics of Computer Network 
+• High speed communication  
+• Resource sharing  
+• Reliability  
+• Scalability  
+• Security  
+• Remote access  
+ 
+
+
+=== Page 3 ===
+Advantages of Computer Networks 
+Advantage Explanation 
+Resource Sharing Share printers, Internet and files 
+Fast Communication Instant messaging and email 
+Cost Saving One printer or Internet for many users 
+Centralized Data Store data in one server 
+Easy Backup Data backup becomes simple 
+Remote Access Access files from anywhere 
+Collaboration Teams work together easily 
+Example 
+A company has 100 employees. 
+Instead of: 
+• 100 printers  
+• 100 Internet connections  
+They use: 
+• 2 printers  
+• 1 Internet connection  
+This saves money. 
+ 
+Disadvantages of Computer Networks 
+Disadvantage Explanation 
+Security Risk Hackers may steal data 
+Virus Spread Malware spreads quickly 
+Network Failure Entire work stops if network fails 
+Maintenance Cost Requires skilled professionals 
+Data Theft Sensitive information may be stolen 
+ 
+Uses of Computer Networks 
+Computer networks are mainly used in: 
+1. Business Applications  
+2. Home Applications  
+3. Mobile Users  
+ 
+ 
+
+=== Page 4 ===
+1. Business Applications 
+ 
+Businesses use computer networks  
+to improve productivity and  
+communication. 
+ 
+Applications 
+ 
+File Sharing 
+Employees access the same files. 
+Example: 
+Google Drive in a company. 
+ 
+Resource Sharing 
+ 
+Share: 
+• Printers  
+• Internet  
+• Software  
+Example: 
+Office printer used by all employees. 
+ 
+Communication 
+ 
+Employees communicate through: 
+• Email  
+• Video conferencing  
+• Chat  
+Example: 
+Microsoft Teams or Zoom meetings. 
+ 
+Online Banking 
+ 
+Banks connect all branches. 
+Example: 
+When money is transferred from one city to another instantly. 
+ 
+Inventory Management 
+ 
+Stores update product information automatically. 
+Example: 
+Supermarket billing system. 
+ 
+E-Commerce 
+Websites: 
+• Amazon  
+• Flipkart  
+Customers order products online. 
+ 
+
+
+=== Page 5 ===
+Advantages 
+• Faster communication  
+• Reduced cost  
+• Better security  
+• Increased productivity  
+• Easy collaboration  
+ 
+Disadvantages 
+• Cyber attacks  
+• Expensive setup  
+• Maintenance required  
+• Internet dependency  
+ 
+Real-Life Example 
+A company has offices in: 
+• Pune  
+• Mumbai  
+• Delhi  
+Employees work on the same project through a network without travelling. 
+ 
+ 
+2. Home Applications 
+ 
+Nowadays almost every home has  
+a computer network. 
+ 
+Applications 
+ 
+Internet Browsing 
+Search information using Google. 
+ 
+Online Education 
+Attend classes on: 
+• Google Meet  
+• Zoom  
+ 
+Entertainment 
+Watch: 
+• YouTube  
+• Netflix  
+ 
+Online Shopping 
+Buy products from home. 
+ 
+Social Media 
+Use: 
+• Instagram  
+• Facebook  
+• WhatsApp  
+ 
+
+
+=== Page 6 ===
+Smart Home 
+Control: 
+• Smart lights  
+• Smart cameras  
+• Smart TV  
+• Smart speakers  
+ 
+Advantages 
+• Entertainment  
+• Learning  
+• Communication  
+• Online shopping  
+• Smart home automation  
+ 
+Disadvantages 
+• Internet addiction  
+• Privacy issues  
+• Cybercrime  
+• Fake websites  
+ 
+Real-Life Example 
+A family has: 
+• 2 smartphones  
+• 1 Smart TV  
+• 1 Laptop  
+• 1 Tablet  
+All devices connect to one Wi-Fi router. 
+Everyone uses the Internet simultaneously. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+=== Page 7 ===
+3. Mobile Users 
+A mobile user accesses computer networks using smartphones or tablets. 
+ 
+Applications 
+ 
+Mobile Banking 
+Transfer money using banking apps. 
+ 
+GPS Navigation 
+Google Maps provides live location. 
+ 
+Video Calling 
+Apps: 
+• WhatsApp  
+• Google Meet  
+ 
+Online Shopping 
+Purchase products anytime. 
+ 
+Cloud Storage 
+Access files using: 
+• Google Drive  
+• OneDrive  
+ 
+Online Payment 
+Use: 
+• UPI  
+• PhonePe  
+• Google Pay  
+ 
+Advantages 
+• Access anywhere  
+• Instant communication  
+• Portable  
+• Real-time information  
+• Convenient  
+ 
+Disadvantages 
+• Battery drain  
+• Network coverage issues  
+• Data privacy risks  
+• Mobile theft  
+• Internet dependency  
+ 
+Real-Life Example 
+While travelling by train: 
+• Book tickets online.  
+• Use Google Maps.  
+• Make UPI payments.  
+• Attend an online meeting.  
+All of these are possible because of computer networks. 
+
+=== Page 8 ===
+➢ Network Hardware (Types of Computer Networks) 
+Network hardware can be classified according to the geographical area it covers. 
+The five main types are: 
+1. PAN (Personal Area Network)  
+2. LAN (Local Area Network)  
+3. MAN (Metropolitan Area Network)  
+4. WAN (Wide Area Network)  
+5. Internetwork (Network of Networks)  
+ 
+1. PAN (Personal Area Network) 
+ 
+Definition 
+A Personal Area Network (PAN) is  
+smallest type of computer network.  
+It connects devices belonging to one  
+person within a very short distance  
+(about 1–10 meters). 
+PAN is mainly used for personal  
+communication between electronic  
+devices. 
+ 
+Exam Definition 
+PAN is a network that connects  
+personal electronic devices within  
+a short distance, usually up to 10  
+meters. 
+ 
+Devices Connected in PAN 
+• Smartphone  
+• Laptop  
+• Smartwatch  
+• Bluetooth Headphones  
+• Wireless Keyboard  
+• Wireless Mouse  
+• Fitness Band  
+ 
+Working of PAN 
+1. A user enables Bluetooth or Wi-Fi.  
+2. Devices discover each other.  
+3. Devices pair securely.  
+4. Data is exchanged wirelessly.  
+Example 
+You connect: 
+• Smartphone → Bluetooth Earbuds  
+• Smartphone → Smartwatch  
+• Laptop → Wireless Mouse  
+All these devices form a PAN. 
+ 
+
+
+=== Page 9 ===
+Real-Life Example 
+A student is studying. 
+He connects: 
+• Laptop  
+• Bluetooth Mouse  
+• Bluetooth Keyboard  
+• Bluetooth Speaker  
+All devices communicate within a few meters. 
+This is a Personal Area Network. 
+ 
+Advantages 
+• Easy to install  
+• Low cost  
+• Wireless communication  
+• Portable  
+• Low power consumption  
+ 
+Disadvantages 
+• Very short range  
+• Low speed compared to LAN  
+• Limited number of devices  
+• Signal interference  
+ 
+Applications 
+• Bluetooth Headphones  
+• Smartwatch  
+• Fitness Tracker  
+• Mobile Hotspot  
+• Wireless Printer  
+ 
+2. LAN (Local Area Network) 
+ 
+
+
+=== Page 10 ===
+Definition 
+A Local Area Network (LAN) connects computers within a small geographical area, such as: 
+• Home  
+• Office  
+• School  
+• College  
+• Laboratory  
+LAN usually covers a few meters to a few kilometers. 
+Exam Definition 
+LAN is a computer network that connects devices within a limited geographical area such as a home, 
+office, school, or building. 
+ 
+Components 
+• Computers  
+• Switch  
+• Router  
+• Printer  
+• Server  
+• Ethernet Cable  
+• Wi-Fi Access Point  
+ 
+Working of LAN 
+1. Computers connect to a switch or Wi-Fi router.  
+2. Every computer receives a unique IP address.  
+3. Users send requests.  
+4. Data travels through the switch/router.  
+5. Destination computer receives the data.  
+ 
+Real-Life Example 
+A college computer lab has: 
+• 60 computers  
+• One printer  
+• One Internet connection  
+• One server  
+All computers share: 
+• Printer  
+• Internet  
+• Files  
+This is a LAN. 
+ 
+Advantages 
+• High speed (100 Mbps to several Gbps)  
+• Easy resource sharing  
+• Low communication cost  
+• Fast file transfer  
+• Easy maintenance  
+• Secure within the organization  
+
+=== Page 11 ===
+ 
+Disadvantages 
+• Covers a small area only  
+• Initial installation cost  
+• Network failure affects all users  
+• Requires administration  
+ 
+Applications 
+• School computer labs  
+• Office networks  
+• Hospitals  
+• Libraries  
+• Banks (inside one branch)  
+ 
+3. MAN (Metropolitan Area Network) 
+ 
+Definition 
+A Metropolitan Area Network (MAN)  
+connects multiple LANs across a city or  
+metropolitan area. 
+Coverage is approximately 5 km to 50 km 
+(or more). 
+ 
+ 
+Exam Definition 
+MAN is a network that interconnects  
+multiple LANs over a city or metropolitan region. 
+ 
+Working of MAN 
+1. Multiple LANs are created.  
+2. High-speed fiber optic cables connect them.  
+3. Routers exchange data between LANs.  
+4. Users communicate across the city.  
+ 
+Real-Life Example 
+A university has: 
+• Main Campus  
+• Engineering Campus  
+• Medical Campus  
+• Hostel  
+All campuses are connected through fiber optic cables. 
+This is a MAN. 
+ 
+ 
+
+
+=== Page 12 ===
+Another Example 
+A bank has 20 branches in Pune. 
+All branches share customer records instantly. 
+This network is a MAN. 
+ 
+Advantages 
+• Covers an entire city  
+• High-speed communication  
+• Resource sharing between branches  
+• Better Internet connectivity  
+• Reliable communication  
+ 
+Disadvantages 
+• Expensive installation  
+• Difficult maintenance  
+• Complex management  
+• Security challenges  
+ 
+Applications 
+• City-wide bank branches  
+• Government offices  
+• University campuses  
+• Cable TV networks  
+• Smart city infrastructure  
+ 
+ 
+4. WAN (Wide Area Network) 
+ 
+Definition 
+A Wide Area Network (WAN) connects 
+computers over very large geographical 
+areas, such as countries or continents. 
+It connects multiple LANs and MANs 
+using leased lines, satellites, fiber optics, 
+or cellular networks. 
+ 
+Exam Definition 
+WAN is a computer network that connects multiple LANs and MANs over large geographical 
+distances such as countries or continents. 
+ 
+Working of WAN 
+1. Each office has its own LAN.  
+2. Routers connect the LANs to Internet Service Providers.  
+3. Fiber optics, satellites, or submarine cables carry the data.  
+4. Destination office receives the information.  
+
+
+=== Page 13 ===
+ 
+Real-Life Example 
+A multinational company has offices in: 
+• Pune  
+• Delhi  
+• London  
+• New York  
+Employees share files and attend video meetings over the WAN. 
+ 
+Best Example 
+The Internet is the world's largest WAN. 
+ 
+Advantages 
+• Worldwide communication  
+• Remote working  
+• Cloud access  
+• Global resource sharing  
+• Supports international business  
+ 
+Disadvantages 
+• High installation cost  
+• Higher delay (latency)  
+• Complex maintenance  
+• Security threats  
+• Depends on service providers  
+ 
+Applications 
+• Internet  
+• International banking  
+• Airline reservation systems  
+• Global companies  
+• Online education platforms  
+ 
+5. Internetwork  
+(Network of Networks) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== Page 14 ===
+Definition 
+An Internetwork is formed by connecting two or more independent networks using networking devices 
+such as routers. 
+The Internet is the largest example of an internetwork. 
+Exam Definition 
+An internetwork is a collection of interconnected networks that communicate using routers and 
+standard communication protocols. 
+ 
+Working of Internetwork 
+1. Different LANs and WANs exist independently.  
+2. Routers connect these separate networks.  
+3. Routers determine the best path.  
+4. Data travels across multiple networks until it reaches the destination.  
+ 
+Real-Life Example 
+Suppose: 
+• College LAN  
+• Bank WAN  
+• Home Wi-Fi  
+• Mobile Network  
+All communicate through the Internet. 
+This forms an Internetwork. 
+ 
+Advantages 
+• Global communication  
+• Scalability  
+• Resource sharing  
+• Better reliability  
+• Flexible network expansion  
+ 
+Disadvantages 
+• Complex configuration  
+• Higher security risks  
+• Costly management  
+• Routing complexity  
+ 
+Applications 
+• Internet  
+• Cloud Computing  
+• International companies  
+• Government networks  
+• E-commerce websites  
+ 
+
+=== Page 15 ===
+ 
+Comparison Table (Exam View) 
+Feature PAN LAN MAN WAN Internetwork 
+Full Form Personal Area 
+Network Local Area Network Metropolitan 
+Area Network 
+Wide Area 
+Network Network of Networks 
+Coverage 1–10 m Building/Campus City Country/World Global 
+Speed Medium Very High High Medium to High Depends on 
+connected networks 
+Cost Very Low Low Medium High Very High 
+Devices Personal 
+devices 
+Computers in one 
+location Multiple LANs Multiple 
+MANs/LANs 
+Multiple independent 
+networks 
+Best 
+Example 
+Bluetooth 
+devices College Lab City Bank 
+Branches Internet Internet connecting 
+many networks 
+ 
+Easy Real-Life Memory Trick 
+• PAN → My Devices (Phone ↔ Smartwatch ↔ Earbuds)  
+• LAN → One Building (School Lab, Office)  
+• MAN → One City (Bank branches in Pune)  
+• WAN → Whole Country/World (International company)  
+• Internetwork → Network of Networks (The Internet) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+=== Page 16 ===
+➢ Network Software (BE Computer Engineering) 
+Network software defines how computers communicate with each other. It consists of protocols, layers, 
+services, and communication rules that allow devices to exchange information correctly. 
+ 
+1. Protocol Hierarchies (Layered Architecture) 
+ 
+What is a Protocol? 
+A protocol is a set of rules and standards that  
+govern how data is transmitted and received  
+over a network. 
+ 
+Exam Definition 
+A protocol is a set of rules that defines how two  
+or more devices communicate and exchange  
+data over a computer network. 
+ 
+Real-Life Example 
+Imagine sending a letter. 
+Both the sender and receiver follow rules: 
+• Correct address  
+• Postal code  
+• Stamp  
+• Envelope  
+ 
+Similarly, computers follow protocols like TCP/IP to exchange data. 
+ 
+What is a Protocol Hierarchy? 
+Instead of performing all networking tasks together, communication is divided into multiple layers, where 
+each layer performs a specific function. 
+Each layer: 
+• Provides services to the layer above.  
+• Uses services from the layer below.  
+Working 
+1. User sends data.  
+2. Data moves from the top layer to the bottom layer.  
+3. Each layer adds its own information (header).  
+4. Data travels through the network.  
+5. At the receiver, headers are removed layer by layer.  
+6. Original data reaches the application.  
+This process is called Encapsulation and Decapsulation. 
+ 
+
+
+=== Page 17 ===
+Why Layering is Needed? 
+• Simpler design  
+• Easier troubleshooting  
+• Independent development  
+• Standardization  
+• Better interoperability  
+ 
+Advantages 
+• Modular design  
+• Easy maintenance  
+• Flexibility  
+• Standard communication  
+• Easy upgrades  
+ 
+Disadvantages 
+• Extra processing  
+• More overhead  
+• Slight communication delay  
+ 
+Real-Life Example 
+When opening a website: 
+1. Browser creates request.  
+2. Transport layer prepares segments.  
+3. Network layer adds IP address.  
+4. Data Link layer creates frames.  
+5. Physical layer sends bits.  
+Receiver performs the reverse process. 
+ 
+2. Design Issues for Layers 
+Each network layer has specific design responsibilities. 
+Major Design Issues 
+1. Addressing 
+Every device needs a unique address. 
+Example: 
+• IP Address  
+• MAC Address  
+Real-Life Example: Every house has a unique postal address. 
+ 
+2. Error Control 
+Detects and corrects transmission errors. 
+Methods: 
+• Checksum  
+• CRC  
+• Acknowledgement (ACK)  
+Example: If a file download is corrupted, missing packets are retransmitted. 
+ 
+3. Flow Control 
+Controls the rate of data transmission. 
+If the sender is faster than the receiver, the receiver's buffer may overflow. 
+
+=== Page 18 ===
+Example: A teacher speaks slowly so students can understand. 
+ 
+4. Routing 
+Determines the best path for data. 
+Routers select the shortest or fastest route. 
+Example: Google Maps chooses the quickest route. 
+ 
+5. Multiplexing 
+Multiple users share one communication channel. 
+Example: Many people use the same mobile tower simultaneously. 
+ 
+6. Segmentation and Reassembly 
+Large messages are divided into smaller packets and later reassembled. 
+Example: A large book is packed into several boxes before shipping. 
+ 
+7. Reliability 
+Ensures data reaches the destination correctly. 
+Methods: 
+• ACK  
+• Retransmission  
+• Sequence numbers  
+ 
+8. Security 
+Protects data using: 
+• Encryption  
+• Authentication  
+• Firewalls  
+ 
+Advantages 
+• Reliable communication  
+• Error-free transmission  
+• Better security  
+• Efficient routing  
+• Improved performance  
+ 
+Disadvantages 
+• Complex implementation  
+• Increased processing  
+• More protocol overhead  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+=== Page 19 ===
+ 
+3. Connection-Oriented Service 
+ 
+Definition 
+A connection-oriented service establishes  
+a connection before sending data. 
+Data is transferred only after the connection 
+is successfully established. 
+The best example is TCP (Transmission  
+Control Protocol). 
+ 
+Working 
+1. Sender requests connection.  
+2. Receiver accepts connection.  
+3. Data is transmitted.  
+4. Acknowledgements confirm receipt.  
+5. Connection is terminated.  
+ 
+Real-Life Example 
+Telephone Call 
+1. Dial number.  
+2. Receiver answers.  
+3. Conversation begins.  
+4. Call ends.  
+Similarly, TCP first establishes a connection and then transfers data. 
+ 
+Features 
+• Reliable  
+• Ordered delivery  
+• Error recovery  
+• Flow control  
+ 
+Advantages 
+• Reliable communication  
+• No packet loss  
+• Ordered data delivery  
+• Error detection and correction  
+ 
+Disadvantages 
+• Slower due to connection setup  
+• Higher overhead  
+• More bandwidth usage  
+ 
+Applications 
+• Email  
+• Online Banking  
+• File Transfer (FTP)  
+• Web Browsing (HTTP over TCP)  
+
+
+=== Page 20 ===
+4. Connectionless Service 
+ 
+ 
+Definition 
+A connectionless service sends data without establishing a connection. 
+Each packet is independent. 
+The best example is UDP (User Datagram Protocol). 
+ 
+Working 
+1. Sender sends packets immediately.  
+2. No connection setup.  
+3. No acknowledgements.  
+4. Receiver receives packets if available.  
+ 
+Real-Life Example 
+Sending a postcard. 
+You simply post it. 
+No confirmation is received whether it reaches the destination. 
+ 
+ 
+ 
+
+
+=== Page 21 ===
+Features 
+• Fast  
+• Low overhead  
+• No guaranteed delivery  
+• No ordering  
+ 
+Advantages 
+• Very fast  
+• Low delay  
+• Simple implementation  
+• Less overhead  
+ 
+Disadvantages 
+• Packet loss possible  
+• No acknowledgements  
+• No retransmission  
+• Data may arrive out of order  
+ 
+Applications 
+• Video Streaming  
+• Online Games  
+• V oice Calls (V oIP)  
+• Live Broadcast  
+ 
+Connection-Oriented vs Connectionless 
+Feature Connection-Oriented Connectionless 
+Connection Setup Required Not Required 
+Reliability High Low 
+Speed Slower Faster 
+Error Recovery Yes No 
+Protocol TCP UDP 
+Example Phone Call Postcard 
+ 
+
+=== Page 22 ===
+5. Service Primitives 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Definition 
+Service primitives are basic operations used by one layer to request services from another layer. 
+They define how communication starts, transfers data, and ends. 
+ 
+Main Service Primitives 
+1. LISTEN 
+The server waits for a connection request. 
+Example: Customer care waits for incoming calls. 
+ 
+2. CONNECT 
+Client requests connection. 
+Example: Dialing a phone number. 
+ 
+3. SEND 
+Transmits data. 
+Example: Sending a WhatsApp message. 
+ 
+4. RECEIVE 
+Accepts incoming data. 
+Example: Receiving an email. 
+ 
+5. DISCONNECT 
+Terminates communication. 
+Example: Hanging up a phone call. 
+ 
+Advantages 
+• Organized communication  
+• Easy implementation  
+• Reliable interaction  
+• Standardized operations  
+ 
+Disadvantages 
+• Slight overhead  
+• More processing for each operation  
+ 
+
+
+=== Page 23 ===
+6. Relationship Between Services and Protocols 
+ 
+ 
+Service 
+A service is what a layer provides to the layer above it. 
+It describes what is offered, not how it is implemented. 
+Example 
+The transport layer provides reliable delivery to applications. 
+ 
+Protocol 
+A protocol defines how two corresponding layers communicate. 
+It specifies: 
+• Message format  
+• Timing  
+• Error handling  
+• Data exchange rules  
+ 
+Relationship 
+• Service = What is provided.  
+• Protocol = How the service is implemented.  
+Protocols implement the services offered by each layer. 
+ 
+ 
+
+
+=== Page 24 ===
+Real-Life Example 
+Restaurant Analogy: 
+• Service: Food is served to customers.  
+• Protocol: The rules followed by waiters and kitchen staff to prepare and deliver the food.  
+Customers care about the service, not the internal process. 
+ 
+Advantages 
+• Clear separation of responsibilities  
+• Independent protocol changes  
+• Easier maintenance  
+• Better flexibility  
+ 
+Disadvantages 
+• More abstraction  
+• Additional protocol overhead  
+ 
+Exam Difference: Service vs Protocol 
+Service Protocol 
+Describes what is provided Describes how communication occurs 
+Interface between layers Rules between peer layers 
+Visible to upper layer Used internally by corresponding layers 
+Independent of implementation Defines implementation details 
+Example: Reliable file transfer Example: TCP 
+ 
+One-Line Revision (Very Important) 
+• Protocol → Rules for communication.  
+• Protocol Hierarchy → Communication divided into layers.  
+• Design Issues → Addressing, routing, flow control, error control, security, reliability, multiplexing.  
+• Connection-Oriented → Connection first, then data (TCP, phone call).  
+• Connectionless → Send data directly (UDP, postcard).  
+• Service Primitives → LISTEN, CONNECT, SEND, RECEIVE, DISCONNECT.  
+• Service → What a layer offers.  
+• Protocol → How the service is implemented. 
+
+=== Page 25 ===
+➢ Unit I: Reference Models – OSI Model and TCP/IP Model (BE Computer Engineering) 
+Reference models provide a standard framework for understanding how data is transmitted over a 
+computer network. Instead of handling all communication in one step, networking tasks are divided into 
+layers. 
+ 
+What is a Reference Model? 
+ 
+Definition 
+A Reference Model is a conceptual framework that divides the communication process into multiple layers. 
+Each layer performs a specific function and communicates with its adjacent layers. 
+Exam Definition 
+A reference model is a layered framework that standardizes the communication process between 
+network devices by dividing networking tasks into separate layers. 
+ 
+Why are Reference Models Needed? 
+Without layers: 
+• Communication becomes complex.  
+• Troubleshooting is difficult.  
+• Devices from different manufacturers may not communicate.  
+With layers: 
+• Standardization  
+• Easy maintenance  
+• Better interoperability  
+• Modular design  
+ 
+Real-Life Example 
+Think of sending a courier parcel. 
+Different departments perform different jobs: 
+1. Customer Service accepts the parcel.  
+2. Packing Department packs it.  
+3. Transportation moves it.  
+4. Local Delivery delivers it.  
+5. Receiver gets the parcel.  
+Similarly, networking is divided into layers. 
+ 
+
+
+=== Page 26 ===
+• OSI Reference Model 
+ 
+Introduction 
+The OSI (Open Systems Interconnection) Reference Model was developed by the International 
+Organization for Standardization. 
+It contains 7 layers, where each layer performs a specific networking task. 
+Exam Definition 
+The OSI model is a seven-layer reference model developed by ISO to standardize network 
+communication between different computer systems. 
+ 
+Seven Layers of OSI Model 
+Layer Number Layer Name Main Function 
+7 Application User interface and network services 
+6 Presentation Data translation, encryption, compression 
+5 Session Session establishment and management 
+4 Transport Reliable delivery and error recovery 
+3 Network Routing and logical addressing 
+2 Data Link Framing, MAC addressing, error detection 
+1 Physical Transmission of bits over media 
+ 
+ 
+
+
+=== Page 27 ===
+Layer 7 – Application Layer 
+Function 
+Provides services directly to the user applications. 
+Examples: 
+• Email  
+• Web Browsing  
+• File Transfer  
+Protocols 
+• HTTP  
+• HTTPS  
+• FTP  
+• SMTP  
+• DNS  
+Real-Life Example 
+Opening a web browser to visit a website. 
+ 
+Layer 6 – Presentation Layer 
+Function 
+Responsible for: 
+• Data Translation  
+• Encryption  
+• Compression  
+Example 
+Before sending a password: 
+• Encrypt it  
+• Compress multimedia data  
+Real-Life Example 
+A PDF file created on Windows can be opened on Linux because this layer handles data format 
+compatibility. 
+ 
+Layer 5 – Session Layer 
+Function 
+Establishes, maintains, and terminates communication sessions. 
+Real-Life Example 
+During a Google Meet call: 
+• Starts the session  
+• Keeps it active  
+• Ends it when the meeting finishes  
+ 
+Layer 4 – Transport Layer 
+Function 
+Provides: 
+• Reliable communication  
+• Error recovery  
+• Flow control  
+• Segmentation  
+Protocols 
+• TCP  , UDP  
+Real-Life Example 
+Downloading a file: 
+If packets are lost, TCP requests retransmission. 
+
+=== Page 28 ===
+Layer 3 – Network Layer 
+Function 
+Responsible for: 
+• Logical addressing  
+• Routing  
+• Path selection  
+Protocol 
+IP 
+Device 
+Router 
+Real-Life Example 
+Google Maps finds the best route to your destination. 
+Similarly, routers find the best path for packets. 
+ 
+Layer 2 – Data Link Layer 
+Function 
+Responsible for: 
+• Framing  
+• MAC Address  
+• Error detection  
+• Access to transmission media  
+Device 
+Switch 
+Real-Life Example 
+Every apartment has a flat number. 
+Similarly, every network card has a unique MAC address. 
+ 
+Layer 1 – Physical Layer 
+Function 
+Transmits raw bits using: 
+• Ethernet Cable  
+• Fiber Optics  
+• Radio Waves  
+Devices 
+• Hub  
+• Repeater  
+• Cable  
+Real-Life Example 
+Electric wires carry electricity. 
+Similarly, cables carry binary bits. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+=== Page 29 ===
+Working of OSI Model :- 
+ 
+Step-by-Step 
+1. User writes an email.  
+2. Application Layer prepares data.  
+3. Presentation Layer encrypts it.  
+4. Session Layer creates a session.  
+5. Transport Layer divides data into segments.  
+6. Network Layer adds IP address.  
+7. Data Link Layer creates frames.  
+8. Physical Layer converts frames into bits.  
+9. Bits travel through the network.  
+10. Receiver removes headers in reverse order (Decapsulation).  
+11. Original message reaches the application.  
+ 
+Advantages of OSI Model 
+• Standardized architecture  
+• Easy troubleshooting  
+• Modular design  
+• Easy protocol replacement  
+• Vendor independence  
+• Better learning model  
+ 
+Disadvantages of OSI Model 
+• Complex implementation  
+• Seven layers increase overhead  
+• Mostly theoretical  
+• Rarely implemented exactly as defined  
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+=== Page 30 ===
+• TCP/IP Reference Model :- 
+ 
+Introduction 
+The TCP/IP (Transmission Control Protocol/Internet Protocol) model is the practical networking model 
+used by the Internet. 
+It has 4 layers. 
+Exam Definition 
+TCP/IP is a four-layer reference model that defines the communication architecture used on the 
+Internet. 
+ 
+Four Layers of TCP/IP Model 
+Layer Function 
+Application User services 
+Transport End-to-end communication 
+Internet Routing and IP addressing 
+Network Access Physical transmission and framing 
+ 
+1. Application Layer 
+Functions 
+Combines the functions of: 
+• OSI Application  
+• Presentation  
+• Session  
+Protocols: 
+• HTTP ,HTTPS  
+• FTP  
+• SMTP  
+• DNS  
+Example 
+Opening YouTube. 
+
+
+=== Page 31 ===
+2. Transport Layer 
+Functions 
+• Reliable communication  
+• Flow control  
+• Error recovery  
+Protocols: 
+• TCP  
+• UDP  
+Example 
+Downloading software using TCP. 
+ 
+3. Internet Layer 
+Functions 
+• Routing  
+• Logical addressing  
+• Packet forwarding  
+Protocol: 
+• IP  
+Device 
+Router 
+Example 
+Finding the best Internet route. 
+ 
+4. Network Access Layer 
+Functions 
+• Framing  
+• Physical transmission  
+• MAC Address  
+Example 
+Ethernet communication. 
+ 
+Working of TCP/IP Model 
+ 
+ 
+
+
+=== Page 32 ===
+Steps 
+1. User opens browser.  
+2. Application creates HTTP request.  
+3. Transport Layer adds TCP header.  
+4. Internet Layer adds IP header.  
+5. Network Access Layer converts packets into frames and bits.  
+6. Data travels.  
+7. Receiver performs reverse processing.  
+ 
+Advantages of TCP/IP 
+• Practical implementation  
+• Used worldwide  
+• Highly scalable  
+• Reliable  
+• Supports heterogeneous networks  
+• Internet standard  
+ 
+Disadvantages of TCP/IP 
+• Less strict layer separation  
+• More difficult to replace protocols  
+• Limited security in the basic model  
+• Not ideal for studying networking concepts  
+ 
+OSI Model vs TCP/IP Model 
+Feature OSI Model TCP/IP Model 
+Developed By ISO DARPA 
+Number of Layers 7 4 
+Nature Reference model Practical protocol suite 
+Use Teaching and design Real Internet communication 
+Session Layer Separate Included in Application 
+Presentation Layer Separate Included in Application 
+Network Layer Network Layer Internet Layer 
+Physical Layer Separate Part of Network Access 
+Protocol Dependency Protocol independent Based on TCP/IP protocols 
+ 
+ 
+ 
+ 
+ 
+ 
+
+=== Page 33 ===
+Mapping of OSI and TCP/IP Models 
+OSI Layer TCP/IP Layer 
+Application Application 
+Presentation Application 
+Session Application 
+Transport Transport 
+Network Internet 
+Data Link Network Access 
+Physical Network Access 
+ 
+Real-Life Example (Complete Communication) 
+Suppose you open www.google.com: 
+1. Application Layer – Browser creates HTTP request.  
+2. Transport Layer – TCP divides data into segments.  
+3. Internet Layer – IP adds source and destination IP addresses.  
+4. Network Access Layer – Data is converted into frames and bits.  
+5. Data travels through routers.  
+6. Google's server receives the request.  
+7. Response returns using the same layered process.  
+ 
+Memory Trick for OSI Layers 
+Top to Bottom 
+A – Application 
+P – Presentation 
+S – Session 
+T – Transport 
+N – Network 
+D – Data Link 
+P – Physical 
+Mnemonic: 
+All People Seem To Need Data Processing 
+ 
+Memory Trick for TCP/IP Layers 
+A – T – I – N 
+• A – Application  
+• T – Transport  
+• I – Internet  
+• N – Network Access  
+ 
+Exam Points (Very Important) 
+Definitions to Remember 
+• OSI Model: A 7-layer reference model developed by ISO for standardizing network communication.  
+• TCP/IP Model: A 4-layer protocol model used for Internet communication. 
+ 
+
+=== Page 34 ===
+➢ Physical Layer  
+The Physical Layer is the first (lowest) layer of the OSI model. It is responsible for the actual 
+transmission of raw binary bits (0s and 1s) over a communication medium. 
+ 
+1. Physical Layer 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Definition 
+The Physical Layer transmits raw bits (0s and 1s) from one device to another using electrical, optical, or 
+radio signals. 
+It defines: 
+• Transmission media  
+• Signal type  
+• V oltage levels  
+• Data rate  
+• Connectors  
+• Physical topology  
+Exam Definition 
+The Physical Layer is the first layer of the OSI model responsible for transmitting raw bits over a 
+physical communication medium. 
+ 
+Main Functions of the Physical Layer 
+• Transmits raw bits (0 and 1)  
+• Converts data into electrical, optical, or radio signals  
+• Defines transmission media  
+• Specifies connectors and cables  
+• Determines data transmission speed  
+• Controls signal synchronization  
+• Defines physical topology  
+
+
+=== Page 35 ===
+ 
+Working of the Physical Layer 
+1. The Data Link Layer sends a frame.  
+2. The Physical Layer converts the frame into bits.  
+3. Bits are converted into signals.  
+4. Signals travel through cables or wireless media.  
+5. The receiver converts signals back into bits.  
+6. Bits are passed to the Data Link Layer.  
+ 
+Real-Life Example 
+Suppose you send a photo through WhatsApp. 
+• Application prepares the photo.  
+• Transport divides it into packets.  
+• Network adds IP addresses.  
+• Data Link creates frames.  
+• Physical Layer sends electrical or radio signals through Wi-Fi or mobile networks.  
+ 
+Advantages 
+• High-speed transmission  
+• Simple implementation  
+• Supports wired and wireless communication  
+• Standardized hardware interfaces  
+ 
+Disadvantages 
+• No error detection  
+• No security  
+• Only transmits bits  
+• Cannot identify the destination  
+ 
+ 
+ 
+ 
+ 
+ 
+
+=== Page 36 ===
+2. Guided Transmission Media 
+(Guided media is also called Wired Media.) 
+Definition 
+Guided transmission media uses physical cables to transmit data from sender to  
+receiver. 
+Types 
+1. Twisted Pair Cable  
+2. Coaxial Cable  
+3. Optical Fiber Cable  
+ 
+A. Twisted Pair Cable 
+Definition 
+A Twisted Pair Cable consists of two  
+insulated copper wires twisted together  
+to reduce electromagnetic interference. 
+Types 
+• UTP (Unshielded Twisted Pair)  
+• STP (Shielded Twisted Pair)  
+ 
+Working 
+1. Data is converted into electrical signals.  
+2. Signals travel through copper wires.  
+3. Twisting reduces noise and interference.  
+4. The receiver converts the signals back into data.  
+ 
+Real-Life Example 
+Ethernet cable connecting: 
+• Computer ↔ Switch  
+• Router ↔ Laptop  
+ 
+Advantages 
+• Low cost  
+• Easy installation  
+• Flexible  
+• Widely available  
+ 
+Disadvantages 
+• Limited distance (about 100 m)  
+• Lower bandwidth  
+• Affected by electromagnetic interference  
+ 
+Applications 
+• LAN  
+• Telephone lines  
+• Office networks  
+
+
+=== Page 37 ===
+B. Coaxial Cable 
+ 
+ 
+ 
+ 
+ 
+Definition 
+A Coaxial Cable has a central copper conductor surrounded by insulation, metallic shielding, and an outer 
+protective jacket. 
+ 
+Working 
+Electrical signals travel through the central conductor, while the metallic shield protects against interference. 
+ 
+Real-Life Example 
+• Cable TV  
+• CCTV cameras  
+• Broadband Internet  
+ 
+Advantages 
+• Better noise protection  
+• Longer distance than twisted pair  
+• Higher bandwidth  
+ 
+Disadvantages 
+• More expensive  
+• Difficult installation  
+• Less flexible  
+ 
+Applications 
+• Television  
+• Cable Internet  
+• Security systems  
+ 
+ 
+
+
+=== Page 38 ===
+C. Optical Fiber Cable 
+ 
+Definition 
+An Optical Fiber Cable transmits data as light pulses through thin strands of glass or plastic. 
+ 
+Working 
+1. Data is converted into light.  
+2. Light travels through the fiber core.  
+3. Total Internal Reflection keeps the light inside the fiber.  
+4. The receiver converts the light back into electrical signals.  
+ 
+Real-Life Example 
+• High-speed broadband  
+• Undersea Internet cables  
+• 5G backbone  
+• Data centers  
+ 
+Advantages 
+• Very high speed  
+• Long-distance communication  
+• Immune to electromagnetic interference  
+• High security  
+• Large bandwidth  
+ 
+Disadvantages 
+• Expensive  
+• Fragile  
+• Difficult installation and repair  
+ 
+Applications 
+• Internet backbone  
+• Hospitals  
+• Banks  
+• Telecommunications  
+ 
+Comparison of Guided Media 
+Feature Twisted Pair Coaxial Cable Optical Fiber 
+Signal Electrical Electrical Light 
+Speed Medium High Very High 
+Cost Low Medium High 
+Distance Short Medium Very Long 
+EMI Resistance Low Medium Excellent 
+Application LAN Cable TV High-speed Internet 
+ 
+
+
+=== Page 39 ===
+3. Wireless Transmission (Unguided Media) 
+ 
+Definition 
+Wireless transmission sends data through  
+electromagnetic waves instead of cables. 
+Types 
+• Radio Waves  
+• Microwaves  
+• Infrared  
+• Satellite Communication  
+ 
+A. Radio Waves 
+Working 
+Signals are transmitted in all directions. 
+Example 
+• FM Radio  
+• Bluetooth  
+• Wi-Fi  
+ 
+Advantages 
+• Long range  
+• Low cost  
+• Easy installation  
+ 
+Disadvantages 
+• Interference  
+• Less secure  
+• Limited bandwidth  
+ 
+B. Microwaves 
+Working 
+Microwave antennas communicate in a straight line (Line-of-Sight). 
+Example 
+• Mobile towers  
+• TV transmission  
+ 
+Advantages 
+• High speed  
+• Long distance  
+ 
+Disadvantages 
+• Requires line-of-sight  
+• Weather affects communication  
+ 
+C. Infrared 
+Working 
+Uses infrared light for short-range communication. 
+
+
+=== Page 40 ===
+Example 
+• TV Remote  
+• Remote-controlled toys  
+ 
+Advantages 
+• Secure  
+• Low interference  
+ 
+Disadvantages 
+• Very short range  
+• Cannot pass through walls  
+ 
+D. Satellite Communication 
+ 
+Working 
+1. Ground station sends signals to a satellite.  
+2. The satellite receives and amplifies the signals.  
+3. The satellite retransmits them to another ground station.  
+ 
+Real-Life Example 
+• GPS  
+• DTH Television  
+• Weather forecasting  
+• International communication  
+ 
+Advantages 
+• Global coverage  
+• Long-distance communication  
+• Supports remote areas  
+ 
+Disadvantages 
+• High cost  
+• Signal delay (latency)  
+• Weather effects  
+ 
+Comparison of Wireless Media 
+Medium Range Speed Example 
+Radio Waves Long Medium Wi-Fi, Bluetooth 
+Microwave Very Long High Mobile Towers 
+Infrared Very Short Medium TV Remote 
+Satellite Global High GPS, DTH 
+ 
+ 
+ 
+
+
+=== Page 41 ===
+4. Telephone System 
+ 
+Definition 
+A Telephone System is a communication  
+network that allows voice and data  
+transmission between users over wired  
+or wireless networks. 
+Modern telephone systems support: 
+• V oice calls  
+• Internet  
+• Video calls  
+• Fax  
+ 
+Components of Telephone System 
+1. Telephone Device  
+2. Local Loop  
+3. Telephone Exchange  
+4. Trunk Lines  
+5. Switching System  
+ 
+Working of Telephone System 
+1. User dials a phone number.  
+2. The call travels through the local loop to the telephone exchange.  
+3. The exchange identifies the destination.  
+4. If local, the call is connected directly.  
+5. If remote, trunk lines carry the call to another exchange.  
+6. The destination telephone rings.  
+7. Communication begins.  
+ 
+Real-Life Example 
+Suppose you call your friend in another city. 
+• Your phone → Local Exchange  
+• Local Exchange → Trunk Line  
+• Trunk Line → Friend's Exchange  
+• Friend's Exchange → Friend's Phone  
+ 
+Types of Telephone Systems 
+1. PSTN (Public Switched Telephone Network) 
+Uses circuit switching for traditional landline communication. 
+2. Mobile Telephone Network 
+Uses cellular towers and wireless communication. 
+3. VoIP (Voice over Internet Protocol) 
+Uses the Internet to make voice calls. 
+Examples: 
+• WhatsApp Calls  
+• Skype  
+• Zoom  
+
+
+=== Page 42 ===
+Advantages 
+• Fast communication  
+• Reliable  
+• Global connectivity  
+• Supports voice and data  
+• Emergency communication  
+ 
+Disadvantages 
+• Infrastructure cost  
+• Network congestion  
+• Signal interference (wireless)  
+• Security concerns  
+ 
+Guided vs Wireless Transmission 
+Feature Guided Media Wireless Media 
+Medium Cable Air 
+Cost Medium Low to Medium 
+Speed High Medium to High 
+Security High Lower 
+Installation Difficult Easy 
+Mobility No Yes 
+Examples Ethernet, Fiber Wi-Fi, 5G, Bluetooth 
+ 
+Memory Tricks (Exam) 
+Guided Media 
+TCO 
+• T – Twisted Pair , C – Coaxial Cable , O – Optical Fiber  
+Wireless Media 
+RMIS 
+• R – Radio , M – Microwave , I – Infrared, S – Satellite 
+ 
+ 
+Last-Minute Revision Points 
+• Physical Layer: Transmits raw bits using electrical, optical, or radio signals.  
+• Guided Media: Twisted Pair, Coaxial Cable, Optical Fiber.  
+• Wireless Media: Radio Waves, Microwaves, Infrared, Satellite.  
+• Optical Fiber: Highest speed, longest distance, uses light.  
+• Twisted Pair: Cheapest and common in LANs.  
+• Coaxial Cable: Used for cable TV and broadband.  
+• Telephone System: Phone → Local Loop → Exchange → Trunk Line → Destination.  
+• PSTN uses circuit switching, while VoIP uses the Internet. 
+ 
+
+=== Page 43 ===
+➢ Unit I – Narrowband and Broadband Communication Systems 
+Communication systems are classified based on the bandwidth they use. The two major types are: 
+1. Narrowband Communication System  
+2. Broadband Communication System  
+ 
+What is Bandwidth? 
+ 
+Definition 
+Bandwidth is the range of frequencies that a communication  
+channel can carry. 
+It is measured in Hertz (Hz). 
+• Higher bandwidth = More data transmitted per second.  
+• Lower bandwidth = Less data transmitted per second.  
+Exam Definition 
+Bandwidth is the difference between the highest and lowest  
+frequencies that can be transmitted through a communication channel. 
+ 
+Real-Life Example 
+Imagine a highway. 
+• Narrow road (1 lane) → Few vehicles can travel at a time (Narrowband).  
+• Wide highway (6 lanes) → Many vehicles can travel simultaneously (Broadband).  
+Similarly: 
+• Narrow bandwidth carries less data.  
+• Broadband carries much more data.  
+ 
+1. Narrowband Communication System 
+ 
+Definition 
+A Narrowband Communication System uses a  
+small range of frequencies (low bandwidth) to  
+transmit data. 
+It is mainly designed for voice communication  
+and low-speed data transmission. 
+ 
+
+
+=== Page 44 ===
+Exam Definition 
+A narrowband communication system uses a small bandwidth to transmit low-speed data and voice 
+signals. 
+ 
+Working of Narrowband Communication 
+1. Sender generates data or voice.  
+2. Data is converted into electrical signals.  
+3. Signals are transmitted over a low-bandwidth channel.  
+4. Receiver receives and converts the signals back into data or voice.  
+Because only a small frequency range is available: 
+• Data transfer is slower.  
+• Fewer signals can be transmitted simultaneously.  
+ 
+Characteristics 
+• Small bandwidth  
+• Low data transfer rate  
+• Mostly analog communication  
+• Supports voice better than multimedia  
+• Lower equipment cost  
+ 
+Real-Life Example 
+Example 1: Traditional Landline Telephone 
+When you make a call using an old telephone: 
+• Only your voice is transmitted.  
+• The telephone channel uses approximately 300 Hz to 3400 Hz.  
+This is a narrowband system. 
+Example 2: Dial-up Internet 
+Older Internet connections using telephone lines provided speeds of about 56 kbps, making them 
+narrowband. 
+ 
+Applications 
+• Landline telephones  
+• V oice communication  
+• Walkie-talkies  
+• Fax machines  
+• Pager systems  
+ 
+Advantages 
+• Low installation cost  
+• Simple technology  
+• Low power consumption  
+• Reliable for voice communication  
+• Easy maintenance  
+ 
+Disadvantages 
+• Very slow data transmission  
+• Cannot support HD video  
+• Unsuitable for large file transfers  
+• Limited bandwidth  
+• Poor multimedia performance  
+ 
+
+=== Page 45 ===
+2. Broadband Communication System 
+ 
+Definition 
+A Broadband Communication System 
+uses a large range of frequencies  
+(high bandwidth) to transmit large  
+amounts of data at high speed. 
+It supports: 
+• V oice  
+• Video  
+• Images  
+• Internet  
+• Streaming  
+• Cloud applications  
+Exam Definition 
+A broadband communication system uses a wide bandwidth to provide high-speed transmission of 
+voice, video, and data simultaneously. 
+ 
+Working of Broadband Communication 
+1. User requests data (e.g., opens YouTube).  
+2. Data is divided into packets.  
+3. Packets travel through high-bandwidth media (fiber optic, cable, DSL, or wireless broadband).  
+4. The receiver receives packets at high speed.  
+5. Video or data is reconstructed for the user.  
+ 
+Characteristics 
+• High bandwidth  
+• High-speed communication  
+• Supports multimedia  
+• Simultaneous services  
+• Digital communication  
+ 
+Real-Life Example 
+Example 1: Fiber Internet 
+When watching a 4K YouTube video, broadband provides enough bandwidth for smooth playback. 
+Example 2: Home Wi-Fi 
+Your family can: 
+• Watch Netflix  
+• Attend Zoom meetings  
+• Play online games  
+• Download files  
+All at the same time using one broadband connection. 
+ 
+Applications 
+• Fiber-optic Internet  
+• Wi-Fi  
+• Cable Internet  
+• 4G/5G mobile networks  
+
+
+=== Page 46 ===
+• Online gaming  
+• Video conferencing  
+• IPTV  
+• Cloud computing  
+ 
+Advantages 
+• Very high speed  
+• Supports HD/4K streaming  
+• Simultaneous voice, video, and data  
+• Reliable Internet access  
+• Supports many users  
+ 
+Disadvantages 
+• Higher installation cost  
+• More expensive equipment  
+• Requires advanced infrastructure  
+• Performance may reduce with network congestion  
+ 
+Comparison of Narrowband and Broadband 
+Feature Narrowband Broadband 
+Bandwidth Small Large 
+Data Speed Low High 
+Data Capacity Small Large 
+Signal Type Mostly V oice V oice, Video, Data 
+Cost Low Higher 
+Multimedia Support No Yes 
+Internet Speed Slow Fast 
+Applications Telephone, Fax Fiber, Wi-Fi, 5G 
+ 
+Working Comparison 
+Narrowband 
+Sender 
+   ↓ 
+Small Bandwidth Channel 
+   ↓ 
+Receiver 
+• One signal at a time  
+• Slow communication  
+
+=== Page 47 ===
+ 
+Broadband 
+V oice 
+      \ 
+Video ----> High Bandwidth Channel ----> Receiver 
+      / 
+Data 
+• Multiple signals simultaneously  
+• High-speed communication  
+ 
+Real-Life Comparison 
+Narrowband Example 
+A village uses an old landline telephone. 
+• V oice call quality is good.  
+• Internet speed is very low.  
+• No HD video streaming.  
+ 
+Broadband Example 
+A modern home has fiber broadband. 
+Family members can simultaneously: 
+• Attend an online class  
+• Watch Netflix  
+• Download software  
+• Play online games  
+without significant interruption. 
+ 
+Advantages and Disadvantages Summary 
+Narrowband Advantages Broadband Advantages 
+Low cost Very high speed 
+Easy installation Supports multimedia 
+Reliable voice communication Multiple users simultaneously 
+Low power Cloud and streaming support 
+Narrowband Disadvantages Broadband Disadvantages 
+Slow speed High installation cost 
+Limited bandwidth Expensive infrastructure 
+No HD streaming Network congestion may affect speed 
+Not suitable for large files Requires modern equipment 
+ 
+ 

@@ -1,0 +1,54 @@
+{
+  "name": "course-recap-generator",
+  "version": "1.0.0",
+  "description": "AI-powered Course Recap Generator with OpenCode integration",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "site": "node site/server.js",
+    "dev": "node src/main.js",
+    "build": "echo \"Building...\" && npm run generate",
+    "generate": "node src/main.js",
+    "review": "node -e \"require('./src/agents/reviewer').default.review()\""
+  },
+  "keywords": [
+    "course",
+    "recap",
+    "generator",
+    "openai",
+    "pdf",
+    "mermaid",
+    "web"
+  ],
+  "author": "Course Author",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/example/course-recap.git"
+  },
+  "bugs": {
+    "url": "https://github.com/example/course-recap/issues"
+  },
+  "homepage": "https://github.com/example/course-recap#readme",
+  "dependencies": {
+    "pdf-parse": "^1.1.1",
+    "mermaid": "^9.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": "18.x || >=20.x"
+  },
+  "files": [
+    "src/",
+    "output/",
+    "slides/",
+    ".opencode/"
+  ],
+  "directories": {
+    "src": "src",
+    "output": "output",
+    "slides": "slides"
+  }
+}

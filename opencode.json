@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "$id": "https://opencode.ai/config.json",
+  "allowComments": true,
+  "allowTrailingCommas": true,
+  "mcp": {
+    "pdf-reader": {
+      "type": "local",
+      "command": ["cmd", "/c", "npx", "-y", "@sylphlab/pdf-reader-mcp"],
+      "enabled": true
+    }
+  }
+}
