@@ -1,209 +1,411 @@
 ﻿<!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Upload a slide-deck PDF and get a professional study site back: topics with slide ranges, exam takeaways, flashcards, a concept diagram and a glossary — one single pass.">
-  <meta name="color-scheme" content="light dark">
-  <title>Course Recap Generator</title>
-  <script>
-    try {
-      var t = localStorage.getItem('recap-theme') ||
-        (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', t);
-    } catch (e) {}
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slide Recap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f7fb;--surface:#fff;--surface2:#eef0f7;--text:#14172b;--muted:#5b617c;--line:#e0e3ef;
+  --accent:#4f46e5;--accent2:#0ea5a4;--accent-soft:#e8e7fd;--ok:#15803d;--ok-bg:#dcfce7;--warn:#a16207;--warn-bg:#fef3c7;--bad:#b91c1c;--bad-bg:#fee2e2;
+  --shadow:0 1px 2px rgba(20,23,43,.06),0 8px 24px rgba(20,23,43,.06);
+  --hero:linear-gradient(135deg,#4338ca 0%,#4f46e5 40%,#0ea5a4 100%);
+}
+:root[data-theme="dark"]{
+  --bg:#0d0f1c;--surface:#161a2e;--surface2:#1d2240;--text:#eceefb;--muted:#9aa1c4;--line:#272d4d;
+  --accent:#8b8cf8;--accent2:#2dd4bf;--accent-soft:#25285a;--ok:#4ade80;--ok-bg:#12351f;--warn:#fbbf24;--warn-bg:#3a2d0b;--bad:#f87171;--bad-bg:#3d1616;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+  --hero:linear-gradient(135deg,#1e1b4b 0%,#312e81 45%,#0f766e 100%);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent2);outline-offset:2px;border-radius:6px}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1080px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:6px}
+.brand{font-weight:800;letter-spacing:-.02em;margin-right:auto;text-decoration:none}
+.nav-link{padding:6px 10px;border-radius:8px;text-decoration:none;color:var(--muted);font-size:14px;font-weight:500}
+.nav-link:hover{background:var(--surface2);color:var(--text)}
+.icon-btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:6px 10px;font-size:14px;font-weight:600}
+.icon-btn:hover{background:var(--surface2)}
+
+/* hero */
+.hero{background:var(--hero);color:#fff;padding:64px 20px 72px}
+.hero-in{max-width:760px;margin:0 auto;text-align:center}
+.hero h1{font-size:clamp(32px,6vw,52px);line-height:1.08;letter-spacing:-.035em;margin:0 0 12px;font-weight:800}
+.hero p{margin:0 auto 28px;max-width:520px;opacity:.9;font-size:18px}
+.drop{border:2px dashed rgba(255,255,255,.55);border-radius:20px;padding:36px 20px;background:rgba(255,255,255,.1);backdrop-filter:blur(6px);transition:background .15s,border-color .15s,transform .15s}
+.drop.over{background:rgba(255,255,255,.22);border-color:#fff;transform:scale(1.015)}
+.drop strong{display:block;font-size:19px;margin-bottom:4px}
+.drop span{opacity:.85;font-size:14px}
+.btn{display:inline-block;margin-top:16px;background:#fff;color:#3730a3;border:0;border-radius:12px;padding:10px 20px;font-weight:700}
+.btn:hover{background:#eef}
+.progress{display:none;align-items:center;justify-content:center;gap:14px;flex-direction:column}
+.hero.busy .idle-ui{display:none}
+.hero.busy .progress{display:flex}
+.spinner{width:36px;height:36px;border-radius:50%;border:4px solid rgba(255,255,255,.3);border-top-color:#fff;animation:spin 1s linear infinite}
+.bar{width:min(360px,80%);height:6px;border-radius:99px;background:rgba(255,255,255,.25);overflow:hidden}
+.bar i{display:block;height:100%;width:40%;background:#fff;border-radius:99px;animation:slide 1.4s ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes slide{0%{margin-left:-40%}100%{margin-left:100%}}
+.notice{margin:16px auto 0;max-width:520px;padding:10px 14px;border-radius:12px;font-size:14px;display:none;background:rgba(255,255,255,.95);color:var(--bad);font-weight:500}
+.notice.show{display:block}
+
+/* layout */
+main{max-width:1080px;margin:0 auto;padding:12px 20px 80px}
+section{padding-top:44px}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+h2{font-size:26px;letter-spacing:-.025em;margin:0;font-weight:700}
+.sec-head .spacer{margin-left:auto}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.topic h3{margin:0 0 8px;font-size:18px;letter-spacing:-.01em}
+.topic p{margin:0 0 10px;color:var(--muted);font-size:15px}
+.topic ul{margin:0;padding-left:18px;font-size:14.5px}
+.topic li{margin:3px 0}
+.chip{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:99px;padding:2px 10px;font-size:12.5px;font-weight:600;margin:0 6px 10px 0}
+
+/* takeaways */
+.take{border-left:5px solid var(--accent2)}
+.take ol{margin:0;padding-left:22px}
+.take li{margin:8px 0;font-size:16px}
+
+/* diagram */
+.diagram{overflow-x:auto;text-align:center;min-height:120px}
+.diagram svg{max-width:100%;height:auto}
+
+/* flashcards */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.flip{perspective:1000px;height:200px;border:0;background:none;padding:0;text-align:left}
+.flip-in{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.flip.on .flip-in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;padding:18px;display:flex;flex-direction:column;justify-content:center;overflow:auto;border:1px solid var(--line);box-shadow:var(--shadow)}
+.front{background:var(--surface)}
+.back{background:var(--accent);color:#fff;transform:rotateY(180deg);border-color:transparent}
+:root[data-theme="dark"] .back{color:#0d0f1c}
+.face small{opacity:.7;font-weight:600;margin-bottom:6px}
+.face div{font-weight:600;font-size:16px}
+.back div{font-weight:500;font-size:15px}
+.hint{color:var(--muted);font-size:14px}
+
+/* reviewer */
+.badge{display:inline-flex;align-items:center;gap:10px;border-radius:99px;padding:6px 14px;font-weight:700;font-size:14px;background:var(--surface2)}
+.badge.ok{background:var(--ok-bg);color:var(--ok)}
+.badge.warn{background:var(--warn-bg);color:var(--warn)}
+.badge.bad{background:var(--bad-bg);color:var(--bad)}
+.cov{display:flex;align-items:center;gap:10px;margin-top:14px;font-size:14px;color:var(--muted)}
+.cov .track{flex:1;max-width:320px;height:8px;background:var(--surface2);border-radius:99px;overflow:hidden}
+.cov .track i{display:block;height:100%;background:var(--accent2);border-radius:99px}
+.review ul{margin:12px 0 0;padding-left:20px;font-size:14.5px}
+
+.missing{border:1px dashed var(--line);border-radius:16px;padding:22px;color:var(--muted);background:var(--surface);text-align:center}
+.missing b{color:var(--text)}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:0 20px 40px}
+
+@media (max-width:640px){
+  .nav-link{display:none}
+  .hero{padding:44px 16px 52px}
+  h2{font-size:22px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* single-colour theme: blue everywhere, navbar a deeper navy */
+:root{--bg:#f4f6fb;--accent:#1d4ed8;--accent2:#1d4ed8;--accent-soft:#e2eafc;--nav:#0f2a6b;--hero:linear-gradient(135deg,#1e40af,#1d4ed8 60%,#2f5fe0)}
+:root[data-theme="dark"]{--bg:#0b1220;--surface:#121b30;--surface2:#1a2542;--line:#243252;--accent:#60a5fa;--accent2:#60a5fa;--accent-soft:#1b2c52;--nav:#08142e;--hero:linear-gradient(135deg,#0f2a6b,#1e40af)}
+nav{background:var(--nav);backdrop-filter:none;border-bottom:1px solid rgba(255,255,255,.1)}
+.brand{color:#fff}.nav-link{color:rgba(255,255,255,.78)}.nav-link:hover{background:rgba(255,255,255,.12);color:#fff}
+nav .icon-btn{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}nav .icon-btn:hover{background:rgba(255,255,255,.14)}
+.btn{color:#1e3a8a}
+.take{border-left-color:var(--accent)}
+@media (max-width:900px){#jsonBtn,#mdBtn{display:none}}
+
+/* print */
+@media print{
+  :root,:root[data-theme="dark"]{--bg:#fff;--surface:#fff;--surface2:#f1f1f5;--text:#111;--muted:#444;--line:#ccc;--shadow:none;--accent:#3730a3;--accent-soft:#e8e7fd}
+  nav,.hero,.no-print,footer{display:none!important}
+  body{background:#fff;font-size:11pt}
+  main{padding:0;max-width:none}
+  section{padding-top:18px;break-inside:avoid-page}
+  .card{box-shadow:none;break-inside:avoid}
+  .grid,.cards{display:block}
+  .topic,.flip{margin-bottom:10px;break-inside:avoid}
+  .flip{height:auto;perspective:none}
+  .flip-in{transform:none!important;transform-style:flat}
+  .face{position:static;transform:none!important;backface-visibility:visible;height:auto;display:block;box-shadow:none;border-radius:8px}
+  .back{background:#f1f1f5;color:#111;border:1px solid #ccc;border-top:0}
+  .front{border-bottom:0}
+}
+</style>
 </head>
-<body data-view="empty">
-  <a class="skip-link" href="#main">Skip to content</a>
+<body>
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#top">Slide Recap</a>
+    <a class="nav-link" href="#topics">Topics</a>
+    <a class="nav-link" href="#takeaways">Takeaways</a>
+    <a class="nav-link" href="#diagram">Diagram</a>
+    <a class="nav-link" href="#examples">Examples</a>
+    <a class="nav-link" href="#quiz">Quiz</a>
+    <a class="nav-link" href="#review">Review</a>
+    <button class="icon-btn no-print" id="themeBtn" type="button" aria-label="Toggle dark mode">Dark</button>
+    <button class="icon-btn no-print" id="jsonBtn" type="button">Download JSON</button>
+    <button class="icon-btn no-print" id="mdBtn" type="button">Download notes</button>
+    <button class="icon-btn no-print" id="printBtn" type="button">Print to PDF</button>
+  </div>
+</nav>
 
-  <header class="site-nav" id="site-nav" role="banner">
-    <div class="site-nav-inner">
-      <a class="site-brand" href="#top" id="brand-home">
-        <svg class="site-brand-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <rect x="3" y="4" width="18" height="12" rx="2"></rect>
-          <path d="M12 16v4M8 20h8"></path>
-        </svg>
-        <span>Course Recap</span>
-      </a>
-      <nav class="site-nav-actions" aria-label="Site actions">
-        <button id="nav-upload" class="btn btn-nav" type="button">Upload PDF</button>
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to dark theme">
-          <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
-          </svg>
-          <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
-          </svg>
-        </button>
-      </nav>
-    </div>
-  </header>
-
-  <header class="hero" id="top">
-    <div class="hero-inner">
-      <p class="hero-day" id="hero-badge">Any PDF · single pass</p>
-      <h1 class="hero-title" id="hero-title">Course Recap Generator</h1>
-      <p class="hero-purpose" id="hero-purpose">Upload a slide-deck PDF and get a professional study site back — thematic topics with slide ranges, three exam takeaways, flashcards, a concept diagram and a glossary, all cited to slides and built in one pass.</p>
-      <p class="hero-meta" id="hero-meta">Extract → recap → review → diagram · no loops</p>
-      <div class="hero-actions" id="hero-actions" hidden>
-        <details class="download-menu" id="download-menu">
-          <summary class="btn btn-ghost">Download recap</summary>
-          <div class="download-panel">
-            <a data-output="recap.md" href="#">Recap notes (.md)</a>
-            <a data-output="recap.json" href="#">Recap data (.json)</a>
-            <a data-output="diagram.mmd" href="#">Diagram (.mmd)</a>
-            <a data-output="review.md" href="#">Review notes (.md)</a>
-            <button type="button" id="print-btn" class="download-item">Print / Save as PDF</button>
-          </div>
-        </details>
-        <button id="another-btn" class="btn btn-ghost" type="button">Summarize another PDF</button>
+<header class="hero" id="top">
+  <div class="hero-in">
+    <h1>Turn lecture slides into exam prep</h1>
+    <p>Drop a PDF and get topics, takeaways, a diagram and flashcards, checked by a reviewer.</p>
+    <div class="drop" id="drop" tabindex="0" role="button" aria-label="Upload a PDF">
+      <div class="idle-ui">
+        <strong>Drag and drop your slides PDF here</strong>
+        <span>or choose a file from your computer</span><br>
+        <button class="btn" type="button" id="pick">Choose PDF</button>
+        <input type="file" id="file" accept="application/pdf,.pdf" hidden>
+      </div>
+      <div class="progress" role="status" aria-live="polite">
+        <div class="spinner"></div>
+        <strong id="progTitle">Uploading…</strong>
+        <span id="progSub">Starting up</span>
+        <div class="bar"><i></i></div>
       </div>
     </div>
-  </header>
+    <div class="notice" id="notice" role="alert"></div>
+  </div>
+</header>
 
-  <nav class="section-nav" id="section-nav" aria-label="Page sections" hidden>
-    <ul>
-      <li><a href="#concepts">Concepts</a></li>
-      <li><a href="#topics">Topics</a></li>
-      <li><a href="#takeaways">Takeaways</a></li>
-      <li><a href="#flashcards">Flashcards</a></li>
-      <li><a href="#diagram">Diagram</a></li>
-      <li><a href="#glossary">Glossary</a></li>
-    </ul>
-  </nav>
+<main id="main" hidden>
+  <section id="topics"><div class="sec-head"><h2>Topics</h2></div><div id="topicsBox"></div></section>
+  <section id="takeaways"><div class="sec-head"><h2>Exam takeaways</h2></div><div id="takeBox"></div></section>
+  <section id="diagram">
+    <div class="sec-head"><h2>Concept diagram</h2>
+      <button class="icon-btn spacer no-print" id="svgBtn" type="button" disabled>Download SVG</button></div>
+    <div id="diagBox"></div>
+  </section>
+  <section id="examples"><div class="sec-head"><h2>Worked examples</h2></div><div id="exBox"></div></section>
+  <section id="quiz">
+    <div class="sec-head"><h2>Flashcard quiz</h2><span class="hint no-print">Click a card to flip it</span></div>
+    <div id="quizBox"></div>
+  </section>
+  <section id="review"><div class="sec-head"><h2>Reviewer</h2></div><div id="reviewBox"></div></section>
+</main>
+<footer>Generated from your slides. Check against the originals before the exam.</footer>
 
-  <main id="main">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  let recap = null;
 
-    <!-- ============ EMPTY: upload ============ -->
-    <div class="view" id="view-empty">
-      <section class="section upload-section" aria-labelledby="upload-heading">
-        <h2 id="upload-heading">Upload your slide deck</h2>
-        <div class="dropzone" id="dropzone" tabindex="0" role="button"
-             aria-label="Upload a PDF: drag a file here or press Enter to choose one">
-          <svg class="dropzone-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path d="M12 16V4M12 4l-4 4M12 4l4 4"></path>
-            <path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"></path>
-          </svg>
-          <p class="dropzone-title">Drag a PDF here, or <span class="dropzone-link">choose one</span></p>
-          <p class="dropzone-hint" id="limit-hint">One deck per run · up to 300 MB</p>
-        </div>
-        <input type="file" id="file-input" accept="application/pdf,.pdf" hidden>
-        <p class="connection-note" id="upload-error" hidden></p>
+  /* ---------- theme ---------- */
+  const root = document.documentElement;
+  function setTheme(t) {
+    root.setAttribute('data-theme', t);
+    $('themeBtn').textContent = t === 'dark' ? 'Light' : 'Dark';
+    try { localStorage.setItem('theme', t); } catch (e) {}
+    if (recap) renderDiagram(recap);
+  }
+  let saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
+  setTheme(saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  $('themeBtn').onclick = () => setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  $('printBtn').onclick = () => window.print();
 
-        <div class="upload-progress" id="upload-progress" hidden>
-          <div class="progress-track"><div class="progress-bar" id="upload-bar"></div></div>
-          <p class="progress-label" id="upload-label">Uploading… 0%</p>
-        </div>
+  /* ---------- data helpers (tolerant of field-name variants) ---------- */
+  const pick = (o, keys) => { for (const k of keys) if (o && o[k] != null && o[k] !== '') return o[k]; return undefined; };
+  const asList = (v) => Array.isArray(v) ? v : (v == null ? [] : [v]);
+  const txt = (v) => typeof v === 'string' ? v : (v && (v.text || v.title || v.point || v.content)) || '';
+  function rangeLabel(v) {
+    if (v == null) return [];
+    if (Array.isArray(v)) return (v.length === 2 && v.every((n) => typeof n === 'number')) ? [`Slides ${v[0]}–${v[1]}`] : v.map((x) => /slide/i.test(x) ? String(x) : `Slides ${x}`);
+    if (typeof v === 'object') return [`Slides ${v.start ?? v.from}–${v.end ?? v.to}`];
+    return [/slide/i.test(v) ? String(v) : `Slides ${v}`];
+  }
+  async function getJson(path) {
+    const r = await fetch(path, { cache: 'no-store' });
+    if (!r.ok) throw new Error(path + ' returned ' + r.status);
+    return r.json();
+  }
+  const missing = (box, file, what) => {
+    box.innerHTML = `<div class="missing">Couldn’t load <b>${esc(file)}</b>. ${esc(what)}</div>`;
+  };
 
-        <ol class="pipeline" aria-label="What happens next">
-          <li><strong>Read slides</strong> — text extracted page by page, long decks in batches</li>
-          <li><strong>Recap</strong> — topics, takeaways, flashcards, glossary, diagram</li>
-          <li><strong>Review</strong> — checked against the slides once, fixes applied once</li>
-          <li><strong>Diagram</strong> — one Mermaid flowchart, slide-stated edges only</li>
-        </ol>
+  /* ---------- render ---------- */
+  function renderTopics(d) {
+    const topics = asList(pick(d, ['topics', 'sections']));
+    if (!topics.length) return missing($('topicsBox'), 'output/recap.json', 'It has no topics yet.');
+    $('topicsBox').innerHTML = '<div class="grid">' + topics.map((t) => {
+      const chips = rangeLabel(pick(t, ['slides', 'slide_range', 'range', 'pages'])).map((c) => `<span class="chip">${esc(c)}</span>`).join('');
+      const pts = asList(pick(t, ['points', 'bullets', 'key_points'])).map((p) => `<li>${esc(txt(p))}</li>`).join('');
+      return `<article class="card topic">${chips}<h3>${esc(pick(t, ['title', 'name', 'topic']) || 'Untitled topic')}</h3>
+        <p>${esc(pick(t, ['summary', 'description']) || '')}</p>${pts ? `<ul>${pts}</ul>` : ''}</article>`;
+    }).join('') + '</div>';
+  }
+  function renderTakeaways(d) {
+    const items = asList(pick(d, ['takeaways', 'exam_takeaways', 'key_takeaways']));
+    if (!items.length) return missing($('takeBox'), 'output/recap.json', 'It has no takeaways yet.');
+    $('takeBox').innerHTML = '<div class="card take"><ol>' + items.map((i) => `<li>${esc(txt(i))}</li>`).join('') + '</ol></div>';
+  }
+  async function renderDiagram(d) {
+    let code = pick(d, ['diagram', 'mermaid']);
+    if (code && typeof code === 'object') code = code.code || code.mermaid;
+    const box = $('diagBox'), btn = $('svgBtn');
+    btn.disabled = true;
+    if (!code) return missing(box, 'output/recap.json', 'It has no diagram yet.');
+    code = String(code).replace(/^```(?:mermaid)?\s*/i, '').replace(/```\s*$/, '').trim();
+    box.innerHTML = '<div class="card diagram" id="diagCard"></div>';
+    try {
+      if (!window.mermaid) throw new Error('Mermaid failed to load');
+      mermaid.initialize({ startOnLoad: false, securityLevel: 'strict', theme: root.getAttribute('data-theme') === 'dark' ? 'dark' : 'neutral', fontFamily: 'Inter, sans-serif' });
+      const { svg } = await mermaid.render('mmd' + Date.now(), code);
+      $('diagCard').innerHTML = svg;
+      btn.disabled = false;
+    } catch (e) {
+      $('diagCard').innerHTML = `<div class="missing">The diagram couldn’t be drawn. ${esc(e.message || '')}</div>`;
+    }
+  }
+  function renderQuiz(d) {
+    const cards = asList(pick(d, ['flashcards', 'cards', 'quiz']));
+    if (!cards.length) return missing($('quizBox'), 'output/recap.json', 'It has no flashcards yet.');
+    $('quizBox').innerHTML = '<div class="cards">' + cards.map((c, i) => `
+      <button class="flip" type="button" aria-label="Flashcard ${i + 1}, press to flip">
+        <div class="flip-in">
+          <div class="face front"><small>Question</small><div>${esc(pick(c, ['q', 'question', 'front']))}</div></div>
+          <div class="face back"><small>Answer</small><div>${esc(pick(c, ['a', 'answer', 'back']))}</div></div>
+        </div></button>`).join('') + '</div>';
+    $('quizBox').querySelectorAll('.flip').forEach((b) => b.addEventListener('click', () => b.classList.toggle('on')));
+  }
+  function renderReview(r) {
+    const verdict = String(pick(r, ['verdict', 'status', 'result']) || 'Unknown');
+    let cov = pick(r, ['coverage', 'coverage_percent', 'score']);
+    let pct = null;
+    if (cov != null) { const n = parseFloat(String(cov).replace('%', '')); if (!isNaN(n)) pct = Math.round(n <= 1 ? n * 100 : n); }
+    const v = verdict.toLowerCase();
+    const cls = /pass|approve|good|ok|accept/.test(v) ? 'ok' : /fail|reject|bad/.test(v) ? 'bad' : /warn|partial|revise|needs|change/.test(v) ? 'warn' : '';
+    const notes = asList(pick(r, ['notes', 'issues', 'comments', 'feedback', 'gaps'])).map((n) => `<li>${esc(txt(n))}</li>`).join('');
+    $('reviewBox').innerHTML = `<div class="card review"><span class="badge ${cls}">Verdict: ${esc(verdict)}</span>
+      ${pct != null ? `<div class="cov"><span>Coverage</span><div class="track"><i style="width:${Math.min(pct, 100)}%"></i></div><b>${pct}%</b></div>` : ''}
+      ${notes ? `<ul>${notes}</ul>` : ''}</div>`;
+  }
 
-        <p class="connection-note" id="connection-note" hidden>
-          Can’t reach the server — start it with <code>node site/server.js</code>, then reload.
-        </p>
-      </section>
-    </div>
+  function renderExamples(d) {
+    const ex = asList(pick(d, ['examples']));
+    if (!ex.length) return ($('exBox').innerHTML = '<div class="missing">No worked examples were found in this PDF.</div>');
+    $('exBox').innerHTML = '<div class="grid">' + ex.map((e) => {
+      const chips = rangeLabel(pick(e, ['slides', 'range'])).map((c) => `<span class="chip">${esc(c)}</span>`).join('');
+      return `<article class="card topic">${chips}<h3>${esc(pick(e, ['title', 'name']) || 'Example')}</h3>
+        <p><b>Problem:</b> ${esc(pick(e, ['problem', 'scenario', 'question']) || '')}</p>
+        <p><b>Solution:</b> ${esc(pick(e, ['solution', 'answer', 'walkthrough']) || '')}</p></article>`;
+    }).join('') + '</div>';
+  }
+  function save(name, text, type) {
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  }
+  const baseName = () => String((recap && recap.source) || 'recap').replace(/\.pdf$/i, '');
+  $('jsonBtn').onclick = () => recap && save(baseName() + '-recap.json', JSON.stringify(recap, null, 2), 'application/json');
+  $('mdBtn').onclick = () => {
+    if (!recap) return;
+    const L = [`# Recap: ${recap.source || ''}`, '', '## Topics'];
+    asList(recap.topics).forEach((t) => { L.push(`### ${t.title} (${rangeLabel(t.slides).join(', ')})`, t.summary || '', ...asList(t.points).map((p) => '- ' + txt(p)), ''); });
+    L.push('## Exam takeaways', ...asList(recap.takeaways).map((t, i) => `${i + 1}. ${txt(t)}`), '', '## Worked examples');
+    asList(recap.examples).forEach((e) => L.push(`### ${e.title}`, `**Problem:** ${e.problem || ''}`, `**Solution:** ${e.solution || ''}`, ''));
+    L.push('## Flashcards', ...asList(recap.flashcards).map((c) => `- **Q:** ${pick(c, ['q', 'question'])}\n  **A:** ${pick(c, ['a', 'answer'])}`));
+    if (recap.diagram) L.push('', '## Diagram', '```mermaid', String(recap.diagram), '```');
+    save(baseName() + '-notes.md', L.join('\n'), 'text/markdown');
+  };
 
-    <!-- ============ PROCESSING ============ -->
-    <div class="view" id="view-processing" hidden>
-      <section class="section processing-section" aria-labelledby="processing-heading">
-        <h2 id="processing-heading">Building your recap</h2>
-        <p class="processing-file" id="processing-file">deck.pdf</p>
+  async function loadAll() {
+    const [rc, rv] = await Promise.allSettled([getJson('output/recap.json'), getJson('output/review.json')]);
+    $('main').hidden = false;
+    if (rc.status === 'fulfilled') {
+      recap = rc.value;
+      renderTopics(recap); renderTakeaways(recap); renderExamples(recap); renderQuiz(recap); renderDiagram(recap);
+    } else {
+      recap = null;
+      const why = 'Upload slides above to generate it.';
+      ['topicsBox', 'takeBox', 'diagBox', 'exBox', 'quizBox'].forEach((id) => missing($(id), 'output/recap.json', why));
+    }
+    if (rv.status === 'fulfilled') renderReview(rv.value);
+    else missing($('reviewBox'), 'output/review.json', 'The reviewer hasn’t run yet.');
+  }
 
-        <ol class="stepper" id="stepper">
-          <li class="step" data-step="0"><span class="step-dot">1</span><span class="step-label">Reading slides</span></li>
-          <li class="step" data-step="1"><span class="step-dot">2</span><span class="step-label">Summarizing</span></li>
-          <li class="step" data-step="2"><span class="step-dot">3</span><span class="step-label">Reviewing</span></li>
-          <li class="step" data-step="3"><span class="step-dot">4</span><span class="step-label">Building diagram</span></li>
-        </ol>
+  /* ---------- upload + polling ---------- */
+  const hero = document.querySelector('.hero'), notice = $('notice');
+  const showErr = (m) => { notice.textContent = m; notice.classList.add('show'); };
+  const busy = (on, title, sub) => { hero.classList.toggle('busy', on); if (title) $('progTitle').textContent = title; if (sub) $('progSub').textContent = sub; };
+  let timer = null;
 
-        <div class="progress-track progress-indeterminate" id="process-track">
-          <div class="progress-bar" id="process-bar"></div>
-        </div>
+  function poll() {
+    clearInterval(timer);
+    timer = setInterval(async () => {
+      try {
+        const s = await getJson('/status');
+        if (s.state === 'running') busy(true, 'Building your recap…', 'This can take a minute or two');
+        else if (s.state === 'done') { clearInterval(timer); busy(false); await loadAll(); location.hash = '#topics'; }
+        else if (s.state === 'error') { clearInterval(timer); busy(false); showErr('The recap failed: ' + (s.error || 'unknown error')); }
+        else if (s.state === 'idle') { clearInterval(timer); busy(false); }
+      } catch (e) { clearInterval(timer); busy(false); showErr('Lost contact with the server. Is it still running?'); }
+    }, 2000);
+  }
 
-        <p class="process-message" id="process-message" aria-live="polite">Working…</p>
-        <p class="process-elapsed" id="process-elapsed"></p>
+  async function upload(file) {
+    notice.classList.remove('show');
+    if (!file || !/\.pdf$/i.test(file.name)) return showErr('Please choose a PDF file.');
+    $('main').hidden = true; recap = null;
+    busy(true, 'Uploading ' + file.name + '…', 'Sending to the server');
+    try {
+      const r = await fetch('/upload?name=' + encodeURIComponent(file.name), { method: 'POST', headers: { 'Content-Type': 'application/pdf' }, body: file });
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        if (!j.error && (r.status === 404 || r.status === 405)) {
+          throw new Error('Upload failed (' + r.status + '): this page isn’t served by site/server.js. Stop other servers, run "node site/server.js" from the project root, and open http://localhost:3000.');
+        }
+        throw new Error(j.error || 'Upload failed (' + r.status + ')');
+      }
+      busy(true, 'Building your recap…', 'This can take a minute or two');
+      poll();
+    } catch (e) { busy(false); showErr(e.message); }
+  }
 
-        <button id="cancel-btn" class="btn btn-outline" type="button">Cancel</button>
-      </section>
-    </div>
+  const drop = $('drop'), input = $('file');
+  $('pick').onclick = (e) => { e.stopPropagation(); input.click(); };
+  drop.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } });
+  input.onchange = () => { upload(input.files[0]); input.value = ''; };
+  ['dragenter', 'dragover'].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add('over'); }));
+  ['dragleave', 'drop'].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.remove('over'); }));
+  drop.addEventListener('drop', (e) => upload(e.dataTransfer.files[0]));
+  window.addEventListener('dragover', (e) => e.preventDefault());
+  window.addEventListener('drop', (e) => e.preventDefault());
 
-    <!-- ============ ERROR ============ -->
-    <div class="view" id="view-error" hidden>
-      <section class="section error-section" role="alert" aria-labelledby="error-heading">
-        <div class="error-card">
-          <h2 id="error-heading">Something went wrong</h2>
-          <p class="error-message" id="error-message">The run failed.</p>
-          <pre class="error-detail" id="error-detail" hidden></pre>
-          <button id="retry-btn" class="btn" type="button">Try another PDF</button>
-        </div>
-      </section>
-    </div>
+  /* ---------- SVG download ---------- */
+  $('svgBtn').onclick = () => {
+    const svg = document.querySelector('#diagCard svg');
+    if (!svg) return;
+    const clone = svg.cloneNode(true);
+    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    const blob = new Blob([new XMLSerializer().serializeToString(clone)], { type: 'image/svg+xml' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'recap-diagram.svg';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
 
-    <!-- ============ RESULT ============ -->
-    <div class="view" id="view-result" hidden>
-
-      <section class="section" id="concepts" aria-labelledby="concepts-heading">
-        <h2 id="concepts-heading">Key concepts</h2>
-        <p class="section-intro" id="concepts-intro">Every teaching slide sits in some topic’s range.</p>
-        <div class="card-grid" id="card-grid"></div>
-      </section>
-
-      <section class="section" id="topics" aria-labelledby="topics-heading">
-        <h2 id="topics-heading">Topics</h2>
-        <div class="topic-list" id="topic-list"></div>
-      </section>
-
-      <section class="section" id="takeaways" aria-labelledby="takeaways-heading">
-        <h2 id="takeaways-heading">Exam takeaways</h2>
-        <ol class="takeaway-list" id="takeaway-list"></ol>
-      </section>
-
-      <section class="section" id="flashcards" aria-labelledby="flashcards-heading">
-        <h2 id="flashcards-heading">Flashcards</h2>
-        <p class="section-intro">Click or press Enter on a card to flip it.</p>
-        <div class="flash-grid" id="flash-grid"></div>
-      </section>
-
-      <section class="section" id="diagram" aria-labelledby="diagram-heading">
-        <h2 id="diagram-heading">Concept diagram</h2>
-        <p class="section-intro" id="diagram-intro">Every arrow traces to a relationship the slides state.</p>
-        <div class="diagram-controls">
-          <button id="download-svg" class="btn" type="button" disabled>Download SVG</button>
-          <p id="diagram-note" class="diagram-note" hidden>The diagram preview needs an internet connection (Mermaid loads from cdnjs). The source below renders in any Mermaid viewer.</p>
-        </div>
-        <div id="diagram-render" class="diagram-render" role="img" aria-label="Concept diagram of the deck’s request flow"></div>
-        <details class="diagram-source">
-          <summary>View diagram source</summary>
-          <pre id="diagram-pre"></pre>
-        </details>
-      </section>
-
-      <section class="section" id="glossary" aria-labelledby="glossary-heading">
-        <h2 id="glossary-heading">Glossary</h2>
-        <dl class="glossary" id="glossary-list"></dl>
-      </section>
-
-    </div>
-  </main>
-
-  <footer class="footer">
-    <p id="footer-note"></p>
-    <p>Figures and claims are quoted from the uploaded deck; case-study numbers are only as reported by the deck’s sources. <a href="#top">Back to top</a></p>
-    <p>Generated by the single-pass <code>/recap</code> pipeline — extract, recap, review, diagram.</p>
-  </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js" defer></script>
-  <script src="script.js" defer></script>
+  /* ---------- start ---------- */
+  getJson('/status').then((s) => { if (s.state === 'done') loadAll(); if (s.state === 'running') { busy(true, 'Building your recap…', 'This can take a minute or two'); poll(); } }).catch(() => {});
+})();
+</script>
 </body>
 </html>
